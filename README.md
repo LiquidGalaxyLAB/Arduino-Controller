@@ -24,4 +24,4 @@ For the complete construction of the controller, the following items will be nec
  * A Glove
  * Android phone or Tablet
  
- You can check the complete list of materials here:
+ You can check the complete list of materials here: https://docs.google.com/spreadsheets/d/1dB7ytINp_5vQwNA6uyauQipsMxrJ-Wr6oeAZAQ9JamU/edit?usp=sharing
