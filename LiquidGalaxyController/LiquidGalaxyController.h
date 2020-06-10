@@ -21,17 +21,17 @@ Otávio Jesus França Oliveira - GSoC 2020
 class LiquidGalaxyController
 {
 	public:
-		void JoysticSetup(*Jpins);
+		void JoysticSetup(int piny, int pinx, int pin button);
 		char JoysticRead();
 		
-		void UltrasonicSetup(*UltrasonicPins);
+		void UltrasonicSetup(int trig, int echo);
 		int  UltrasonicMensure();
 		
 		void KeypadSetup(*keyMatriz,*rows, *coluns,nRow,nColun);
 		int KeyPress();
 		
-		Void VoiceSetup(int rx, int tx);
-		void VoiceRead();
+		void VoiceSetup(int rx, int tx, int pinOut);
+		int VoiceRead();
 		void RecordCommands();
 		void StartRecognition(int group);
 	
@@ -39,10 +39,19 @@ class LiquidGalaxyController
 	private:
 		int _piny,_pinx,_pinPush;
 		int _trig, _echo;
-		int _row, _colun;
+		int _rows, _coluns;
 		int _rx, _tx;
+		byte *_rowsPin;
+		byte  *_conlunsPin;
+		byte *_keys;
+		int _a = 0;
+		int _b = 0;
+		byte _z[27]; // antigo a
+		int _pinOut; // Voice record indicator
+		int _Comand;
 		
-		
+		int  KeyUpdate();
+		void PinOut(int Comand); // Verificar necessidade
 			
 }
 
