@@ -6,7 +6,7 @@ byte a[27];
 char Rec[] = {0xaa,0x03,0x20,0x01,0x0a};// Comand test
 int gorups[] = {0,1,2,3,4}; // Array with groups index 
 byte groups[5] [8]={
-{0xAA,0x06,0x30,0x01,0x02,0x03,0x04,0x0A}, // PLace Groups
+{0xAA,0x06,0x30,0x01,0x02,0x03,0x04,0x0A}, // PLace Groups (Comando completo para ativar o reconhecimento do primeiro grupo)
 {0xAA,0x06,0x30,0x05,0x06,0x07,0x08,0x0A}, // First Group
 {0xAA,0x06,0x30,0x09,0x0A,0x0B,0x0C,0x0A}, // Second Group
 {0xAA,0x06,0x30,0x0D,0x0E,0x0F,0x10,0x0A}, // Third Group
@@ -27,15 +27,15 @@ char Keys[NumberRows] [NumberColuns] = {
 #define echoPin 19  
 #define trigPin 21 
 #define buz 18
-#define pinY A12
-#define pinX A13
-int bot = 4;
+int JoystickPins[]={A12,A13,4}; // Pinos de conexão joystic
+int JoysticRanges[] = {3200,100,3200,600};
 
 void setup() 
 {
   Serial.begin(9600);
   VR3.begin(9600);
-  pinMode(4,INPUT);// JOYSTIC BUTTON
+  //pinMode(4,INPUT);// JOYSTIC BUTTON
+  pinMode(JoystickPins[2],INPUT);
   pinMode(buz,OUTPUT);// LED CONNECTION
   digitalWrite(buz,LOW);
   //------------------------------------- // ULTRASONIC SENSOR COMMANDS
@@ -54,7 +54,10 @@ void loop()
     RecordComands();// RECORD COMMANDS
   }
    VoiceRead(); // READ VOICE MODULE COMMANDS
-   joystic(pinY,pinX,bot); // JOYSTICK FUNCTION
+   
+   char joy = joysticRead(JoystickPins[0],JoystickPins[1],JoystickPins[2]);// JOYSTICK FUNCTION
+   if(joy) Serial.println(joy);
+   
    Ultrasonic(); // ULTRASONIC FUNCTION
    KeyPress(); // KEYBOARD FUNCTION
 }
@@ -138,15 +141,19 @@ void Buzzer(int B)
 }
 //--------------------------------------------------------------------------------------------------------------
 //JOYSTICK COMMANDS
-void joystic(int pin1, int pin2, int bot)
-{
-    if(analogRead(pin1) > 3200) Serial.println("BACK");
-    else if(analogRead(pin1) < 100) Serial.println("FRONT");
+//void joystic(int piny, int pinx, int bot){}
 
-    if(analogRead(pin2) > 3200) Serial.println("RIGTH");
-    else if(analogRead(pin2) < 600) Serial.println("LEFT"); 
+char joysticRead(int piny, int pinx, int bot)
+{
+    if(analogRead(piny) > JoysticRanges[0]) return 'B';//Serial.println("BACK");
+    else if(analogRead(piny) < JoysticRanges[1]) return 'F';//Serial.println("FRONT");
+
+    if(analogRead(pinx) > JoysticRanges[2]) return 'R';//Serial.println("RIGTH");
+    else if(analogRead(pinx) < JoysticRanges[3]) return 'L';//Serial.println("LEFT"); 
     
-    if(digitalRead(bot)) Serial.println("BUTTON");
+    if(digitalRead(bot))return 'P'; //Serial.println("BUTTON");
+
+    return 0;
 }
 //--------------------------------------------------------------------------------------------------------------
 //ULTRASONIC FUNCTION
