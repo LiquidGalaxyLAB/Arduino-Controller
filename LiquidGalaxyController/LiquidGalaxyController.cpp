@@ -17,7 +17,7 @@ Otávio Jesus França Oliveira - GSoC 2020
 #include "SoftwareSerial.h"
 #include "LiquidGalaxyController.h"
 
-LiquidGalaxyController::JoysticSetup(int piny, int pinx, int button); // JOYSTICK CONTROLLER CONFIGURATION FUNCTION
+LiquidGalaxyController::JoysticSetup(int piny, int pinx, int button); // JOYSTICK CONTROLLER CONFIGURATION FUNCTION ...
 {
 	_piny = piny;
 	_pinx = pinx;
