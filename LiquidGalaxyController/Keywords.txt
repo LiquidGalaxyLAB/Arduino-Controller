@@ -1,4 +1,4 @@
-/*-------------------------------------------------------------
+﻿/*-------------------------------------------------------------
  _ _             _     _               _                  
 | (_) __ _ _   _(_) __| |   __ _  __ _| | __ ___  ___   _ 
 | | |/ _` | | | | |/ _` |  / _` |/ _` | |/ _` \ \/ / | | |
@@ -14,17 +14,26 @@ Otávio Jesus França Oliveira - GSoC 2020
 -------------------------------------------------------------*/
 
 LiquidGalaxyController	KEYWORD1
-JoystickSetup		KEYWORD2
-JoystickRead		KEYWORD2
+JoysticSetup		KEYWORD2
+joysticRead		KEYWORD2
 UltrasonicSetup		KEYWORD2
 UltrasonicMensure	KEYWORD2	
 KeypadSetup		KEYWORD2
-KeyPress
-VoiceSetup		KEYWORD2
+KeyPress		KEYWORD2
 VoiceRead		KEYWORD2
 RecordCommands		KEYWORD2
 StartRecognition	KEYWORD2
-Led			KEYWORD2
+StartRecognition	KEYWORD2
+
+
+
+		
+
+
+
+
+
+
 
 
 
