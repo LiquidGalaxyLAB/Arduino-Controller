@@ -20,11 +20,11 @@ SoftwareSerial VR3(22,23); // VOICE RECOGNITION CONFIGURATIONS
     int gorups[] = {0,1,2,3,4}; // Array with groups index
     byte ComandsNumber[] = {0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F,0x10,0x11,0x12,0x13,0x14};
     byte groups[5] [8]={
-      {0xAA,0x06,0x30,0x01,0x02,0x03,0x04,0x0A}, // PLace Groups this command is used to recognize the voice commands of the first group
-      {0xAA,0x06,0x30,0x05,0x06,0x07,0x08,0x0A}, // First Group
-      {0xAA,0x06,0x30,0x09,0x0A,0x0B,0x0C,0x0A}, // Second Group
-      {0xAA,0x06,0x30,0x0D,0x0E,0x0F,0x10,0x0A}, // Third Group
-      {0xAA,0x06,0x30,0x11,0x12,0x13,0x14,0x0A} }; 
+      {0xAA,0x07,0x30,0x01,0x02,0x03,0x04,0x05,0x0A}, // PLace Groups this command is used to recognize the voice commands of the first group
+      {0xAA,0x07,0x30,0x06,0x07,0x08,0x09,0x0A,0x0A}, // First Group
+      {0xAA,0x07,0x30,0x0B,0x0C,0x0D,0x0E,0x0F,0x0A}, // Second Group
+      {0xAA,0x07,0x30,0x10,0x11,0x12,0x13,0x14,0x0A}, // Third Group
+      {0xAA,0x07,0x30,0x15,0x16,0x17,0x18,0x19,0x0A} }; 
 
 //---------------------------------------------------------------------- KEYBOARD CONFIGURATIONS
 const byte NumberRows = 4;
@@ -38,6 +38,7 @@ int Keys[NumberRows*NumberColuns] =
   13,14,15,16};
 
   int _VoiceControlN = 1;
+  int verificator = 0;
 //----------------------------------------------------------------------SETUP CONFIGURATION
 void setup() 
 {
@@ -52,6 +53,8 @@ void setup()
 
 void loop() 
 {
+  if(verificator = 0){RecognitionBegin(0); verificator =1;}
+  
   if(digitalRead(5))
   {
     Serial.print("Regording: ");
@@ -112,12 +115,25 @@ void RecordCommands(int Ncommand) // This function is responsible for sending th
    }while (control != 1);
 }
 
-void StartRecognition(int group)// This function sends the necessary commands for the voice module to start the speech recognition process.
+void GetRecognition(int group)// This function sends the necessary commands for the voice module to start the speech recognition process.
 {
-  for(int k=0;k<8;k++)
-  {
-    VR3.write(groups[group][k]);
-  }
+     if(VR3.available())
+    {
+      for(int i = 0; i<27;i++)
+     {
+        _z[i] = VR3.read();
+          delay(1); 
+     }
+
+    }
+}
+
+void RecognitionBegin(int _Vgroup)
+{
+    for(int _k=0;_k<9;_k++)
+    {
+      VR3.write(groups[_Vgroup][_k]);
+    }
 }
 
 void PinOut(int Command)
