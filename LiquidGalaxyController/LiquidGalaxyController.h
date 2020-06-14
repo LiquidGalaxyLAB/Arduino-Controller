@@ -63,20 +63,20 @@ class LG_Keypad
 class LG_VoiceSetup
 {
 	public:
-		VoiceSetup(int _Rx,int _Tx, int _pinO);				
+		LG_VoiceSetup(int _pin);				
 		void RecordCommands(int Ncommand);
 		void StartRecognition(int group);
 		void GetRecognition(); 
 		
 	private:
 		int VoiceRead();
-		void VoiceSetPinOut(int _pin);
 		void PinOut(int Command) 
 		
 		int _rx, _tx;
 		byte _z[27]; // antigo a
-    	int _pinOut; // Voice record indicator
+    	int _pinOut = 0; // Voice record indicator
     	int _Command;
+    	int _control;
     	byte a[27];
     	char Rec[] = {0xaa,0x03,0x20};// Comand test
     	int gorups[] = {0,1,2,3,4}; // Array with groups index

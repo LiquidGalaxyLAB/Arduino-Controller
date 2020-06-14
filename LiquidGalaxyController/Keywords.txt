@@ -14,18 +14,17 @@ Otávio Jesus França Oliveira - GSoC 2020
 -------------------------------------------------------------*/
 
 LiquidGalaxyController	KEYWORD1
-JoysticSetup		KEYWORD2
-joysticRead		KEYWORD2
-UltrasonicSetup		KEYWORD2
+LG_JoysticSetup		KEYWORD2
+JoysticRead		KEYWORD2
+LG_UltrasonicSetup	KEYWORD2
 UltrasonicMensure	KEYWORD2	
-KeypadSetup		KEYWORD2
+LG_Keypad		KEYWORD2
+KeyUpdate		KEYWORD2
 KeyPress		KEYWORD2
-VoiceRead		KEYWORD2
+LG_VoiceSetup		KEYWORD2
 RecordCommands		KEYWORD2
+GetRecognition		KEYWORD2
 StartRecognition	KEYWORD2
-StartRecognition	KEYWORD2
-
-
 
 		
 

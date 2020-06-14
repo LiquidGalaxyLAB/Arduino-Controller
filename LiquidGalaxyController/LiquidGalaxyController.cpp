@@ -45,6 +45,7 @@ char LG_JoysticSetup:: JoysticRead() // FUNCTION FOR TO READ THE JOYSTIC CONTROL
 
     return 0;
 }
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 
 LG_UltrasonicSetup::LG_UltrasonicSetup(int _Trig, int _Echo) // PIN MODE SETUP 
 {
@@ -67,6 +68,7 @@ int LG_UltrasonicSetup::UltrasonicMensure()
 	 
     return _distance;
 }
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 
 LG_Keypad::LG_Keypad(int *keyMatriz,byte *rowsPins,byte *colunsPins,byte nRow,byte nColun) // This function receive the all information about the keyboard 
 {                                                                                      // And map the pins and variables
@@ -116,8 +118,19 @@ int LG_Keypad::KeyPress()
 	return 0;
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+LG_VoiceSetup::LG_VoiceSetup(int _pin)
+{
+	_pinOut = _pin;
+	
+	if(_pinOut !=0)
+	{
+    	pinMode(_pinOut,OUTPUT);
+    	digitalWrite(_pinOut,LOW);
+	}
+}
 
-int LiquidGalaxyController::VoiceRead() 
+int LG_VoiceSetup::VoiceRead() 
 {
       if(VR3.available())
    		 {
@@ -134,61 +147,74 @@ int LiquidGalaxyController::VoiceRead()
     	 } 
 }
 
-void LiquidGalaxyController::RecordCommands(int Ncommand)
+void LG_VoiceSetup::RecordCommands(int Ncommand)
 {
-   int control;
-   delay(100);
    for(int _t=0;_t<3;_t++) {VR3.write(Rec[_t]);} // At this point the first command is sent for to start recording
    VR3.write(ComandsNumber[Ncommand]);
    VR3.write(0x0A);
    
-   delay(10);
+   delay(1);
    do
    {
-    control = VoiceRead();
-   }while (control != 1);
+    _control = VoiceRead();
+   }while (_control != 1);
 }
 
-void LiquidGalaxyController::StartRecognition(int group) // Alterar o vetor de grupos com base no informado pelo usuário
+void LG_VoiceSetup::GetRecognition()
 {
-	for(int k=0;k<8;k++)
+	if(VR3.available())
+    {
+      for(int i = 0; i<27;i++)
+     	{
+       		 _z[i] = VR3.read();
+          	 delay(1); 
+    	 }
+
+    } 
+}
+
+void LG_VoiceSetup::StartRecognition(int _Vgroup) // Alterar o vetor de grupos com base no informado pelo usuário
+{
+	for(int _k=0;_k<8;_k++)
   	{
-    	VR3.write(groups[group][k]);
+    	VR3.write(groups[_Vgroup][_k]);
   	}
 }
 
 void LiquidGalaxyController::PinOut(int Command)
 {
-
-	switch(Command)
-  {
-    case 1:
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(800);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    break;
-    case 2:
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(200);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(200);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(200);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    break;
-    case 3:
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(500);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(500);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(500);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(500);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    delay(500);
-    digitalWrite(_pinOut,!digitalRead(_pinOut));
-    break;
+	if(_pinOut !=0)
+	{
+		switch(Command)
+ 	 {
+    	case 1:
+   	 	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(800);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	break;
+    	case 2:
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(200);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(200);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(200);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	break;
+    	case 3:
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(500);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(500);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(500);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(500);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	delay(500);
+    	digitalWrite(_pinOut,!digitalRead(_pinOut));
+    	break;
+  	}
   }
 }
 
