@@ -18,33 +18,79 @@ Otávio Jesus França Oliveira - GSoC 2020
 
 #include "Arduino.h"
 
-class LiquidGalaxyController
+class JoysticSetup
 {
 	public:
-		void JoysticSetup(int piny, int pinx, int button);
+		JoysticSetup(int piny, int pinx, int button);
 		char joysticRead();
-		
-		void UltrasonicSetup(int trig, int echo);
-		int  UltrasonicMensure();
-		
-		void KeypadSetup(int *keyMatriz,byte *rowsPins,byte *colunsPins,byte nRow,byte nColun);
-		int KeyPress();
-		
-		int VoiceRead();
-		void RecordCommands(int Ncommand);
-		void StartRecognition(int group);
-		void StartRecognition(int group);
 		
 	private:
 		int _piny,_pinx,_pinPush; // ALL VARIABLES ARE CHANGED
-    	int _trig, _echo;
-   		byte _rows, _coluns;
+	
+};
+
+class UltrasonicSetup
+{
+	public:
+		UltrasonicSetup(int trig, int echo);
+		int  UltrasonicMensure();
+		
+	private:
+		int _trig, _echo;
+	
+};
+
+class KeypadSetup
+{
+	public:
+		KeypadSetup(int *keyMatriz,byte *rowsPins,byte *colunsPins,byte nRow,byte nColun);
+		int KeyPress();
+		
+	private:
+		int KeyUpdate(); // GANGED THE TIPE
+		
+		byte _rows, _coluns;
     	byte *_rowsPin;
     	byte *_colunsPin;
-    	int _rx, _tx; 
     	int *_keys;
     	int _a = 0;
     	int _b = 0;
+};
+	
+class 
+{
+	public:
+		int VoiceRead();
+		void RecordCommands(int Ncommand);
+		void StartRecognition(int group);
+		
+	private:
+};
+//	public:
+		//void JoysticSetup(int piny, int pinx, int button);
+		//char joysticRead();
+		
+		//void UltrasonicSetup(int trig, int echo);
+		//int  UltrasonicMensure();
+		
+		//void KeypadSetup(int *keyMatriz,byte *rowsPins,byte *colunsPins,byte nRow,byte nColun);
+		//int KeyPress();
+		
+		//int VoiceRead();
+		//void RecordCommands(int Ncommand);
+		//void StartRecognition(int group);
+
+		
+	private:
+		//int _piny,_pinx,_pinPush; // ALL VARIABLES ARE CHANGED
+    	//int _trig, _echo;
+   		//byte _rows, _coluns;
+    	//byte *_rowsPin;
+    	//byte *_colunsPin;
+    	int _rx, _tx; 
+    	//int *_keys;
+    	//int _a = 0;
+    	//int _b = 0;
     	byte _z[27]; // antigo a
     	int _pinOut; // Voice record indicator
     	int _Command;
@@ -64,9 +110,7 @@ class LiquidGalaxyController
       	void PinOut(int Command); // Verificar necessidade
       	void VoiceSetPinOut(int _pin);
       			
-		int KeyUpdate(); // GANGED THE TIPE
+		//int KeyUpdate(); // GANGED THE TIPE
 		
-			
-}
 
 #endif
