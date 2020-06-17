@@ -102,10 +102,11 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
+    var size = MediaQuery.of(context).size;
     return Container(
       color: Colors.white,
       width: mediaQuery.size.width * 0.60,
-      height: mediaQuery.size.height,
+      height: size.height,
       child: Column(
         children: <Widget>[
           Container(
@@ -123,77 +124,94 @@ class CustomDrawer extends StatelessWidget {
                   SizedBox(
                     height: 1,
                   ),
-                  Text("Liquid Galaxy")
+                  Text("Liquid Galaxy",
+                    style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                  )
                 ],
               )),
-          ListTile(
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BluetoothPage()));
-              //Navigator.push(context, MaterialPageRoute(
-              //  builder: (BuildContext context) => BluetoothPage()
-              //));
-              closeDrawer();
-            },
-            leading: Icon(Icons.bluetooth_connected),
-            title: Text(
-              "Connect",
+          Expanded(
+            child: Container(
+              child: LayoutBuilder(
+                builder: (_,constraints){
+                  return Container(
+                    height: constraints.maxHeight,
+                    child: ListView(
+                      children: <Widget>[
+                        ListTile(
+                          onTap: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BluetoothPage()));
+                            closeDrawer();
+                          },
+                          leading: Icon(Icons.bluetooth_connected),
+                          title: Text(
+                            "Connect",
+                          ),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>KeyBoardPage()));
+                            closeDrawer();
+                          },
+                          leading: Icon(Icons.keyboard),
+                          title: Text("Keyboard"),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            debugPrint("Voice Recognition");
+                          },
+                          leading: Icon(Icons.settings_voice),
+                          title: Text("Voice Recognition"),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            debugPrint("Ultrasonic");
+                          },
+                          leading: Icon(Icons.surround_sound),
+                          title: Text("Ultrasonic"),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            debugPrint("Accelerometer");
+                          },
+                          leading: Icon(Icons.vertical_align_center),
+                          title: Text("Accelerometer"),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            debugPrint("Settings");
+                          },
+                          leading: Icon(Icons.settings),
+                          title: Text("Settings"),
+                        ),
+
+
+
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>KeyBoardPage()));
-              closeDrawer();
-            },
-            leading: Icon(Icons.keyboard),
-            title: Text("Keyboard"),
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Voice Recognition");
-            },
-            leading: Icon(Icons.settings_voice),
-            title: Text("Voice Recognition"),
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Ultrasonic");
-            },
-            leading: Icon(Icons.surround_sound),
-            title: Text("Ultrasonic"),
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Accelerometer");
-            },
-            leading: Icon(Icons.vertical_align_center),
-            title: Text("Accelerometer"),
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey,
-          ),
-          ListTile(
-            onTap: () {
-              debugPrint("Settings");
-            },
-            leading: Icon(Icons.settings),
-            title: Text("Settings"),
           ),
 
 
