@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappbosta/BluetoohPage.dart';
 import 'package:flutterappbosta/KeyBoard.dart';
+import 'package:flutterappbosta/VoicePage.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
 
@@ -83,10 +84,22 @@ class FirstScreen extends StatelessWidget {
     @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Divider(
-          height: 8,
-          color: Colors.blueAccent,
+      body: Center(
+        child: Container(
+          child: SizedBox(
+            child: RaisedButton(
+              onPressed: (){
+
+              },
+              child: Text("Bluetooth Connect", style: TextStyle(
+                  color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+              ),
+              color: Colors.blue,
+              elevation: 10,
+            ),
+          ),
+          width: 200,
+          height: 100,
         ),
       ),
     );
@@ -165,7 +178,8 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            debugPrint("Voice Recognition");
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VoicePage()));
+                            closeDrawer();
                           },
                           leading: Icon(Icons.settings_voice),
                           title: Text("Voice Recognition"),

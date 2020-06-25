@@ -362,7 +362,28 @@ class KeyBoardPage extends StatelessWidget {
                                           ),
                                           width: constraints.maxWidth*.85,
                                           height: constraints.maxHeight* .1,
-                                        )
+                                        ),
+                                        Container(
+                                          color: Colors.white,
+                                          width: size.width,
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          child: SizedBox(
+                                            child: RaisedButton(
+                                              onPressed: (){
+
+                                              },
+                                              child: Text("Examples", style: TextStyle(
+                                                  color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                                              ),
+                                              color: Colors.blue,
+                                              elevation: 10,
+                                            ),
+                                          ),
+                                          width: constraints.maxWidth*.85,
+                                          height: constraints.maxHeight* .1,
+                                        ),
                                       ],
                                     ),
                                   )
