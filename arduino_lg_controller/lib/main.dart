@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappbosta/BluetoohPage.dart';
 import 'package:flutterappbosta/KeyBoard.dart';
+import 'package:flutterappbosta/Ultrasonic.dart';
 import 'package:flutterappbosta/VoicePage.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -190,7 +191,8 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            debugPrint("Ultrasonic");
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UltrasonicPage()));
+                            closeDrawer();
                           },
                           leading: Icon(Icons.surround_sound),
                           title: Text("Ultrasonic"),
