@@ -4,12 +4,12 @@
 #include <WiFiUdp.h>
 #include <OSCBundle.h>  
 #include <OSCMessage.h>
-char ssid[] = "Ilana"; 
-char pass[] = "32513296";
+char ssid[] = "Ilana"; // Insert your SSID
+char pass[] = "32513296";v//Insert your password
 WiFiUDP Udp;                           // UDP instance to let us send and receive UDP packets
 const IPAddress outIp(192,168,0,11);
 const unsigned int localPort = 8000;   // Local port to listen for UDP packets 
-const unsigned int outPort = 5005;    // Destination port for sending OSC messages
+const unsigned int outPort = 8000;    // Destination port for sending OSC messages
 //---------------------------------------------------------------------------------------------
 const byte NumberRows = 4;
 const byte NumberColuns = 4;
@@ -54,9 +54,7 @@ void setup()
 }
 
 void loop() 
-{ 
-   
-  
+{   
    int key = LGKey.KeyPress(); // KEYBOARD FUNCTION
    if(key) 
    {
@@ -91,7 +89,7 @@ void loop()
       break;
     }
    } else  if(moviment==1){ Serial.println("Stop"); SendMessage(0); moviment=0;}
-/*
+
    int distance = Ultrasonic.UltrasonicMensure();// ULTRASONIC FUNCTION 
    if(distance < 15) 
    { 
@@ -99,7 +97,7 @@ void loop()
     Serial.print(map(distance,0,25,0,100)); 
     Serial.println("  %"); 
     SendMessage(1);
-   }    */
+   }   
 
 }
 //-------------------------------------------------------------------------------------------------------------------------
