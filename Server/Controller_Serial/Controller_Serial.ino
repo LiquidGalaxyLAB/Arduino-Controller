@@ -42,22 +42,26 @@ void loop()
     {
       case 'F':
       //SendMessageSerial(5);
-      Serial.println(5);
+      //Serial.println(5);
+      Serial.println(9); // UP Tilt
       break;
 
       case 'B':
       //SendMessageSerial(6);
-      Serial.println(6);
+      //Serial.println(6);
+      Serial.println(10);// Down Tilt
       break;
       
       case 'R':
       //SendMessageSerial(3);
-      Serial.println(3);
+      //Serial.println(3);
+      Serial.println(7); // Cam Right
       break;
 
       case 'L':
       //SendMessageSerial(4);
-      Serial.println(4);
+      //Serial.println(4);
+      Serial.println(8); // Cam Left
       break;
 
       case 'P':
