@@ -42,7 +42,7 @@ def Position_Controller(unused_addr, args, data):
 
 if __name__ == "__main__":
 
-  ip = '0.0.0.0'
+  ip = '192.168.0.5'
   port = 5005
   width, height = m.screen_size()
   dispatcher = dispatcher.Dispatcher()
