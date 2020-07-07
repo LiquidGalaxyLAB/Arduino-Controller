@@ -41,14 +41,12 @@ def Position_Controller(dataRec):
     #    time.sleep(.1)
     else:
         keyb.release(Key.down)
-    print(data)
 
 
 if __name__ == "__main__":
     #width, height = m.screen_size()
     while True:
         valor = comport.readline().decode()
-       # print(valor)
         Position_Controller(valor)
 
 #comport.close()
