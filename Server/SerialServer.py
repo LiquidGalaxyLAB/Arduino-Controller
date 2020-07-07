@@ -13,7 +13,8 @@ from pynput.keyboard import Key, Controller as KeyboardController
 
 keyb = KeyboardController()
 
-comport = serial.Serial('COM3', 9600)
+comport = serial.Serial('/dev/ttyUSB0',9600)
+#comport = serial.Serial('COM3', 9600)
 
 
 def Position_Controller(dataRec):
@@ -27,23 +28,44 @@ def Position_Controller(dataRec):
         mouse.scroll(0, -1)  # zoom out
     if data == 3:
         keyb.press(Key.right)  # RIGHT
-    #   time.sleep(.1)
     else:
         keyb.release(Key.right)
     if data == 4:
         keyb.press(Key.left)  # LEFT
-    #     time.sleep(.1)
     else:
         keyb.release(Key.left)
     if data == 5:
         keyb.press(Key.up)  # UP
-    #   time.sleep(.1)
     else:
         keyb.release(Key.up)
     if data == 6:
         keyb.press(Key.down)  # DOWN
-    #    time.sleep(.1)
     else:
+        keyb.release(Key.down)
+        
+    if data == 7:
+        keyb.press(Key.shift)
+        keyb.press(Key.right)
+    else:
+        keyb.release(Key.shift)
+        keyb.release(Key.right)
+    if data == 8:
+        keyb.press(Key.shift)
+        keyb.press(Key.left)
+    else:
+        keyb.release(Key.shift)
+        keyb.release(Key.left)
+    if data == 9:
+        keyb.press(Key.shift)
+        keyb.press(Key.up)  # UP Tilt
+    else:
+        keyb.release(Key.shift)
+        keyb.release(Key.up)
+    if data == 10:
+        keyb.press(Key.shift)
+        keyb.press(Key.down)  # DOWN Tilt
+    else:
+        keyb.release(Key.shift)
         keyb.release(Key.down)
 
 
