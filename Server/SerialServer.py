@@ -3,23 +3,27 @@ import pynput
 import time
 import serial
 
-#from pymouse import PyMouse
-#m = PyMouse()
+# from pymouse import PyMouse
+# m = PyMouse()
 
 from pynput.mouse import Button, Controller as MouseController
+
 mouse = MouseController()
 from pynput.keyboard import Key, Controller as KeyboardController
+
 keyb = KeyboardController()
 
-comport = serial.Serial('COM3',9600)
+comport = serial.Serial('COM3', 9600)
+
 
 def Position_Controller(dataRec):
     data = int(dataRec)
+    print(data)
     if data == 1:
-       # mouse.position = ((width / 2), (height / 2))
+        # mouse.position = ((width / 2), (height / 2))
         mouse.scroll(0, 1)  # zoom in
     if data == 2:
-       # mouse.position = ((width / 2), (height / 2))
+        # mouse.position = ((width / 2), (height / 2))
         mouse.scroll(0, -1)  # zoom out
     if data == 3:
         keyb.press(Key.right)  # RIGHT
@@ -44,9 +48,10 @@ def Position_Controller(dataRec):
 
 
 if __name__ == "__main__":
-    #width, height = m.screen_size()
+    # width, height = m.screen_size()
     while True:
         valor = comport.readline().decode()
+        print(valor)
         Position_Controller(valor)
 
-#comport.close()
+# comport.close()

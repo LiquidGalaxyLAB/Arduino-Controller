@@ -5,7 +5,7 @@
 #include <OSCBundle.h>  
 #include <OSCMessage.h>
 char ssid[] = "Ilana"; // Insert your SSID
-char pass[] = "32513296";v//Insert your password
+char pass[] = "32513296";//Insert your password
 WiFiUDP Udp;                           // UDP instance to let us send and receive UDP packets
 const IPAddress outIp(192,168,0,11);
 const unsigned int localPort = 8000;   // Local port to listen for UDP packets 
@@ -88,7 +88,11 @@ void loop()
       SendMessage(2);
       break;
     }
-   } else  if(moviment==1){ Serial.println("Stop"); SendMessage(0); moviment=0;}
+   } else  if(moviment==1)
+            { Serial.println("Stop"); 
+              SendMessage(0); 
+              moviment=0;
+            }
 
    int distance = Ultrasonic.UltrasonicMensure();// ULTRASONIC FUNCTION 
    if(distance < 15) 
