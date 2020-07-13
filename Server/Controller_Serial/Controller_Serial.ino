@@ -27,16 +27,6 @@ String Coordnates[16][3]={
   {"-88.567935","20.683510","600"},
   {"12.492135","41.890079","600"},
  };
-
-String places[] = 
-  { "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-122.478015</longitude><latitude>37.819859</latitude><altitude>100.0</altitude><heading>90</heading><tilt>45</tilt><range>3000</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
-    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-122.478015</longitude><latitude>37.819859</latitude><altitude>100.0</altitude><heading>90</heading><tilt>45</tilt><range>3000</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
-    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>78.042202</longitude><latitude>27.172969</latitude><altitude>100.0</altitude><heading>0</heading><tilt>45</tilt><range>1500</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
-    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-43.210317</longitude><latitude>-22.951838</latitude><altitude>700.0</altitude><heading>-120</heading><tilt>70</tilt><range>400</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
-    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-88.567935</longitude><latitude>20.683510</latitude><altitude>100.0</altitude><heading>-180</heading><tilt>45</tilt><range>600</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
-    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>12.492316</longitude><latitude>41.890240</latitude><altitude>100.0</altitude><heading>10</heading><tilt>45</tilt><range>600</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>"
-  };
-
 int moviment =0;
 
 void setup() 
@@ -47,11 +37,10 @@ void setup()
 
 void loop() 
 {   
+  if(digitalRead(5))Tour(15);
    int key = LGKey.KeyPress(); // KEYBOARD FUNCTION
    if(key) 
    {
-     //Serial.println(key);
-     //Serial.println(places[key]);
      Serial.println(MakeKML(Coordnates[key-1][0],Coordnates[key-1][1],Coordnates[key-1][2]));
    }
 
@@ -60,7 +49,6 @@ void loop()
    {
     //delay(10);
     moviment =1;
-    //Serial.println(joy);
     JoysticAnalyser(3,joy);
    } else  if(moviment==1)
             { 
@@ -171,5 +159,13 @@ void JoysticAnalyser(int State, char Position)
       break;
     }// end switch
   }// end Tlt and Roll
-  
+}
+//-------------------------------------------------------------------------------------------------------
+void Tour(int Time)
+{
+  for(int tour;tour<16;tour++)
+  {
+    Serial.println(MakeKML(Coordnates[tour][0],Coordnates[tour][1],Coordnates[tour][2]));
+    delay(Time*1000);
+  }
 }
