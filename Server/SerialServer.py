@@ -4,10 +4,10 @@ from pynput.keyboard import Key, Controller as KeyboardController
 
 keyb = KeyboardController()
 
-#comport = serial.Serial('/dev/ttyUSB0', 9600)
+comport = serial.Serial('/dev/ttyUSB0', 9600)
 
 
-comport = serial.Serial('COM3', 9600)
+#comport = serial.Serial('COM3', 9600)
 
 def Position_Controller(dataRec):
     data = dataRec
@@ -91,9 +91,9 @@ def Position_Controller(dataRec):
         keyb.release(Key.shift)
         keyb.release(Key.down)
 
-       # f = open("/tmp/query.txt", "w")
-       # f.write(data)
-       # f.close()
+        f = open("/tmp/query.txt", "w")
+        f.write(data)
+        f.close()
 
     data = 0
 
