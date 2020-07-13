@@ -17,6 +17,15 @@ int JoysticRanges[] = {3200,10,3200,100};        // You can check these values j
 LG_JoysticSetup joystic(A6,A7,4,JoysticRanges);
 LG_UltrasonicSetup Ultrasonic(21,19);
 
+String places[] = 
+  { "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-122.478015</longitude><latitude>37.819859</latitude><altitude>100.0</altitude><heading>90</heading><tilt>45</tilt><range>3000</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
+    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-122.478015</longitude><latitude>37.819859</latitude><altitude>100.0</altitude><heading>90</heading><tilt>45</tilt><range>3000</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
+    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>78.042202</longitude><latitude>27.172969</latitude><altitude>100.0</altitude><heading>0</heading><tilt>45</tilt><range>1500</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
+    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-43.2110</longitude><latitude>-22.9520</latitude><altitude>100.0</altitude><heading>-45</heading><tilt>45</tilt><range>1000</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
+    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>-88.567935</longitude><latitude>20.683510</latitude><altitude>100.0</altitude><heading>-180</heading><tilt>45</tilt><range>600</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>",
+    "flytoview=<gx:duration> 5 </gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>12.492316</longitude><latitude>41.890240</latitude><altitude>100.0</altitude><heading>10</heading><tilt>45</tilt><range>600</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>"
+  };
+
 int moviment =0;
 
 void setup() 
@@ -30,7 +39,8 @@ void loop()
    int key = LGKey.KeyPress(); // KEYBOARD FUNCTION
    if(key) 
    {
-     Serial.println(key);
+     //Serial.println(key);
+     Serial.println(places[key]);
    }
 
    char joy = joystic.JoysticRead();// JOYSTICK FUNCTION
@@ -66,7 +76,7 @@ void loop()
 
       case 'P':
       //SendMessageSerial(2);
-      Serial.println(2);
+      Serial.println("zOut");
       break;
     }
    } else  if(moviment==1)
@@ -80,7 +90,7 @@ void loop()
    if(distance < 15) 
    { 
     delay(300);
-    Serial.println(1);
+    Serial.println("zIn");
    }   
 
 }
