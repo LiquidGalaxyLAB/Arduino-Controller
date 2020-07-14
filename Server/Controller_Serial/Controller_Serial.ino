@@ -17,7 +17,7 @@ int JoysticRanges[] = {3200,10,3200,100};        // You can check these values j
 LG_JoysticSetup joystic(A6,A7,4,JoysticRanges);
 LG_UltrasonicSetup Ultrasonic(21,19);
 
-String Commands[]={"0","linear","zOut","zIn","right","left","up","down","rightUp","rightDown","leftUp","leftDown",
+String Commands[]={"zero","linear","zOut","zIn","right","left","up","down","rightUp","rightDown","leftUp","leftDown",
                    "CamUp","CamDown","CamRight","CamLeft","rollRight","rollLeft","tiltUp","tiltDown"};
 
 String Coordnates[16][3]={
@@ -51,8 +51,8 @@ void loop()
     moviment =1;
     JoysticAnalyser(3,joy);
    } else  if(moviment==1)
-            { 
-              Serial.println(0);
+            { LGMove(0);
+              //Serial.println(0);
               moviment=0;
             }
 

@@ -1,110 +1,74 @@
+#!/usr/bin/python
 import serial
+import keyboard
 
 from pynput.keyboard import Key, Controller as KeyboardController
 
 keyb = KeyboardController()
 
 comport = serial.Serial('/dev/ttyUSB0', 9600)
-
-
 #comport = serial.Serial('COM3', 9600)
 
 def Position_Controller(dataRec):
     data = dataRec
-
     print(data)
 
     if "linear" in data:
         keyb.press('r')
-    else:
-        keyb.release('r')
-    if "zOut" in data:
-        keyb.press(Key.page_up)
-    else:
-        keyb.release(Key.page_up)
-    if "zIn" in data:
+    elif "zOut" in data:
         keyb.press(Key.page_down)
-    else:
-        keyb.release(Key.page_down)
-    if "right" in data:
+    elif "zIn" in data:
+        keyb.press(Key.page_up)
+    elif "right" in data:
         keyb.press(Key.right)  # RIGHT
-    else:
-        keyb.release(Key.right)
-    if "left" in data:
+    elif "left" in data:
         keyb.press(Key.left)  # LEFT
-    else:
-        keyb.release(Key.left)
-    if "up" in data:
+    elif "up" in data:
         keyb.press(Key.up)  # UP
-    else:
-        keyb.release(Key.up)
-    if "down" in data:
+    elif "down" in data:
         keyb.press(Key.down)  # DOWN
-    else:
-        keyb.release(Key.down)
-    if "CamUp" in data:
+    elif "CamUp" in data:
         keyb.press(Key.ctrl)
         keyb.press(Key.up)
-    else:
-        keyb.release(Key.ctrl)
-        keyb.release(Key.up)
-    if "CamDown" in data:
+    elif "CamDown" in data:
         keyb.press(Key.ctrl)
         keyb.press(Key.down)
-    else:
-        keyb.release(Key.ctrl)
-        keyb.release(Key.down)
-    if "CamRight" in data:
+    elif "CamRight" in data:
         keyb.press(Key.ctrl)
         keyb.press(Key.right)
-    else:
-        keyb.release(Key.ctrl)
-        keyb.release(Key.right)
-    if "CamLeft" in data:
+    elif "CamLeft" in data:
         keyb.press(Key.ctrl)
         keyb.press(Key.left)
-    else:
-        keyb.release(Key.ctrl)
-        keyb.release(Key.left)
-    if "rollRight" in data:
+    elif "rollRight" in data:
         keyb.press(Key.shift)
         keyb.press(Key.right)
-    else:
-        keyb.release(Key.shift)
-        keyb.release(Key.right)
-    if "rollLeft" in data:
+    elif "rollLeft" in data:
         keyb.press(Key.shift)
         keyb.press(Key.left)
-    else:
-        keyb.release(Key.shift)
-        keyb.release(Key.left)
-    if "tiltUp" in data:
+    elif "tiltUp" in data:
         keyb.press(Key.shift)
         keyb.press(Key.up)  # UP Tilt
-    else:
-        keyb.release(Key.shift)
-        keyb.release(Key.up)
-    if "tiltDown" in data:
+    elif "tiltDown" in data:
         keyb.press(Key.shift)
         keyb.press(Key.down)  # DOWN Tilt
-    else:
+    elif "zero" in data:
         keyb.release(Key.shift)
+        keyb.release(Key.ctrl)
         keyb.release(Key.down)
-
+        keyb.release(Key.right)
+        keyb.release(Key.left)
+        keyb.release(Key.up)
+    else:
         f = open("/tmp/query.txt", "w")
         f.write(data)
         f.close()
-
-    data = 0
 
 
 if __name__ == "__main__":
 
     while True:
         valor = comport.readline().decode('UTF-8')
-
-        print(valor)
-
         Position_Controller(valor)
 
 # comport.close()
+
