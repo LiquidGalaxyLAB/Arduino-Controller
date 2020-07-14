@@ -2,7 +2,6 @@
 import serial
 
 from pynput.keyboard import Key, Controller as KeyboardController
-
 keyb = KeyboardController()
 
 comport = serial.Serial('/dev/ttyUSB0', 9600)
@@ -57,11 +56,12 @@ def Position_Controller(dataRec):
         keyb.release(Key.right)
         keyb.release(Key.left)
         keyb.release(Key.up)
+        keyb.release(Key.page_down)
+        keyb.release(Key.page_up)
     else:
         f = open("/tmp/query.txt", "w")
         f.write(data)
         f.close()
-
 
 if __name__ == "__main__":
 
