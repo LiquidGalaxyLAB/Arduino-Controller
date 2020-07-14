@@ -1,6 +1,5 @@
 #!/usr/bin/python
 import serial
-import keyboard
 
 from pynput.keyboard import Key, Controller as KeyboardController
 
