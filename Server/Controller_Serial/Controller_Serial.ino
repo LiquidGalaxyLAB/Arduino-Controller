@@ -27,7 +27,7 @@ String Coordnates[16][3]={
   {"-88.567935","20.683510","600"},
   {"12.492135","41.890079","600"},
  };
-int moviment =0;
+int moviment, moviment2 =0;
 
 void setup() 
 {
@@ -47,22 +47,22 @@ void loop()
    char joy = joystic.JoysticRead();// JOYSTICK FUNCTION
    if(joy)
    {
-    //delay(10);
     moviment =1;
     JoysticAnalyser(3,joy);
    } else  if(moviment==1)
             { LGMove(0);
-              //Serial.println(0);
               moviment=0;
             }
 
-   //int distance = Ultrasonic.UltrasonicMensure();// ULTRASONIC FUNCTION 
-   //if(distance < 15) 
-   //{ 
-    //delay(300);
-   // LGMove(3);
-    //Serial.println("zIn");
-  // }   
+   int distance = Ultrasonic.UltrasonicMensure();// ULTRASONIC FUNCTION 
+   if(distance < 15) 
+   { 
+    moviment2 =1;
+    LGMove(3);
+   } else  if(moviment2==1)
+            { LGMove(0);
+              moviment2=0;
+            }   
 
 }
 
