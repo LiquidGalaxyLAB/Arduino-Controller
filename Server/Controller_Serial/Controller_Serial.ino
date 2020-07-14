@@ -13,8 +13,7 @@ int Keys[NumberRows*NumberColuns] =
 
 LG_Keypad LGKey(Keys,linha,coluna,NumberRows,NumberColuns);
 int JoysticRanges[] = {3200,10,3200,100};        // You can check these values just by reading the analog inputs corresponding to the joystic 
-                       //B,F,R,P                 //and define the value that you consider best
-LG_JoysticSetup joystic(A6,A7,4,JoysticRanges);
+LG_JoysticSetup joystic(A6,A7,4,JoysticRanges);  //B,F,R,P and define the value that you consider best
 LG_UltrasonicSetup Ultrasonic(21,19);
 
 String Commands[]={"zero","linear","zOut","zIn","right","left","up","down","rightUp","rightDown","leftUp","leftDown",
@@ -37,10 +36,7 @@ void loop()
 {   
   if(digitalRead(5))Tour(15);
    int key = LGKey.KeyPress(); // KEYBOARD FUNCTION
-   if(key) 
-   {
-     Serial.println(MakeKML(Coordnates[key-1][0],Coordnates[key-1][1],Coordnates[key-1][2]));
-   }
+   if(key){Serial.println(MakeKML(Coordnates[key-1][0],Coordnates[key-1][1],Coordnates[key-1][2]));}
 
    char joy = joystic.JoysticRead();// JOYSTICK FUNCTION
    if(joy)
@@ -48,7 +44,8 @@ void loop()
     moviment =1;
     JoysticAnalyser(3,joy);
    } else  if(moviment==1)
-            { LGMove(0);
+            { 
+              LGMove(0);
               moviment=0;
             }
 
@@ -58,7 +55,8 @@ void loop()
     moviment2 =1;
     LGMove(3);
    } else  if(moviment2==1)
-            { LGMove(0);
+            { 
+              LGMove(0);
               moviment2=0;
             }   
 
@@ -73,16 +71,6 @@ void LGMove(int Command)
 
 String MakeKML(String longitude, String latitude, String range)
 {
-  /*String kml = "flytoview=<gx:duration>5</gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>";
-  kml += longitude;
-  kml += "</longitude><latitude>";
-  kml +=latitude ;
-  kml += "</latitude><altitude>700";
-  //kml +=altitude ;
-  kml += "</altitude><heading>90</heading><tilt>45</tilt><range>";
-  kml += range;
-  kml += "</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>";*/
-
   String kml ="flytoview=<LookAt><longitude>";
   kml += longitude;
   kml += "</longitude><latitude>";
@@ -90,9 +78,21 @@ String MakeKML(String longitude, String latitude, String range)
   kml += "</latitude><range>";
   kml += range;
   kml += "</range></LookAt>";
-  
-  return kml;
-  
+  return kml; 
+}
+//-------------------------------------------------------------------------------------------------------
+String MakeCompleteKML(String longitude, String latitude,String altitude, String range)
+{
+  String kml = "flytoview=<gx:duration>5</gx:duration><gx:flyToMode>smooth</gx:flyToMode><LookAt><longitude>";
+  kml += longitude;
+  kml += "</longitude><latitude>";
+  kml +=latitude ;
+  kml += "</latitude><altitude>700";
+  kml +=altitude ;
+  kml += "</altitude><heading>90</heading><tilt>45</tilt><range>";
+  kml += range;
+  kml += "</range><gx:altitudeMode>absolute</gx:altitudeMode></LookAt>";*/
+  return kml; 
 }
 //-------------------------------------------------------------------------------------------------------
 void JoysticAnalyser(int State, char Position)
