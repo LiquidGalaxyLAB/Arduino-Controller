@@ -3,7 +3,7 @@
 SoftwareSerial VR3(22,23);
 //-------------------------------------------------- Voice Commands
 byte a[27];
-int rec =17;
+int rec =18;
 int _pinOut = 18;
 int received;
 byte headVoice[4]={0xAA,0x02,0x31,0x0A};
@@ -36,7 +36,8 @@ String Coordnates[16][3]={
   {"-72.545224","-13.163820","600"},{"35.441919","30.328456","600"},{"2.294473","48.857730","1000"},{"-0.124419","51.500769","500"},{"-74.044535","40.689437","500"},
   {"37.623446","55.752362","500"},{"-73.985359","40.748360","500"},{"-51.049260","0.030478","500"},{"31.132695","29.976603","500"},{"0.626502","41.617540","600"},{"116.562771","40.435456","500"}
   };
-int moviment, moviment2 =0;
+int moviment, moviment2,moviment3 =0;
+int movJoy =1;
 
 void setup() 
 {
@@ -84,8 +85,14 @@ void loop()
    char joy = joystic.JoysticRead();// JOYSTICK FUNCTION
    if(joy)
    {
+    if(joy == 'P') 
+    {
+      movJoy++; digitalWrite(_pinOut,!digitalRead(_pinOut)); delay(200);
+      digitalWrite(_pinOut,!digitalRead(_pinOut));
+    }
+    if(movJoy == 4)movJoy = 1;
     moviment =1;
-    JoysticAnalyser(3,joy);
+    JoysticAnalyser(movJoy,joy);
    } else  if(moviment==1)
             { 
               LGMove(0);
@@ -93,7 +100,7 @@ void loop()
             }
 
    int distance = Ultrasonic.UltrasonicMensure();// ULTRASONIC FUNCTION 
-   if(distance < 15) 
+   if(distance < 10) 
    { 
     moviment2 =1;
     LGMove(3);
@@ -101,7 +108,16 @@ void loop()
             { 
               LGMove(0);
               moviment2=0;
-            }   
+            }  
+   if(distance < 25 && distance > 15) 
+   { 
+    moviment3 =1;
+    LGMove(2);
+   } else  if(moviment3==1)
+            { 
+              LGMove(0);
+              moviment3=0;
+            } 
 }
 
 //-------------------------------------------------------------------------------------------------------
@@ -154,9 +170,9 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(5);
       break;
-      case 'P':
-      LGMove(2);
-      break;
+      //case 'P':
+      //LGMove(2);
+      //break;
     }// end switch
   }// end Simple Moviments
   if(State == 2) // Camera Moviments
@@ -174,9 +190,9 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(15);
       break;
-      case 'P':
-      LGMove(2);
-      break;
+     // case 'P':
+     // LGMove(2);
+     // break;
     }// end switch
   }// end Cam Moviments
   if(State == 3) // Tlt and Roll
@@ -194,9 +210,9 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(17);
       break;
-      case 'P':
-      LGMove(2);
-      break;
+     // case 'P':
+     // LGMove(2);
+     // break;
     }// end switch
   }// end Tlt and Roll
 }
