@@ -45,15 +45,19 @@ String Coordnates[16][3]={
 int moviment, moviment2,moviment3 =0;
 int movJoy =1;
 int tourPin =15;
+int clicleTimeInit, cicleTimeEnd;
 
 void setup() 
 {
+  clicleTimeInit = cicleTimeEnd = millis();
   Serial.begin(9600);
   //----------------------------------
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.println("...");
+    cicleTimeEnd = millis();
+    if((cicleTimeEnd - clicleTimeInit)> (2000))ESP.restart(); // This function restart the ESP32 if it dont connect in 7 seconds
   }
  
   Serial.print("WiFi connected with IP: ");
@@ -81,7 +85,7 @@ delay(100);
 
 void loop() 
 {   
-    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(15);}
+    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(10);} 
     if(digitalRead(5))
     { while(digitalRead(5) == HIGH){} 
       grupos(rec);
@@ -92,7 +96,6 @@ void loop()
     received = GetRec();
     if (received <17 && received>0)
     {
-     // Serial.println(received);
       Serial.println(MakeKML(Coordnates[received-1][0],Coordnates[received-1][1],Coordnates[received-1][2])); 
         if (client.connect(host, port)){ client.print(MakeKML(Coordnates[received-1][0],Coordnates[received-1][1],Coordnates[received-1][2]));}
         client.stop();
@@ -142,7 +145,6 @@ void loop()
               LGMove(0);
               moviment3=0;
             } 
-
 }
 
 //-------------------------------------------------------------------------------------------------------
@@ -201,9 +203,6 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(5);
       break;
-      //case 'P':
-      //LGMove(2);
-      //break;
     }// end switch
   }// end Simple Moviments
   if(State == 2) // Camera Moviments
@@ -221,9 +220,6 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(15);
       break;
-     // case 'P':
-     // LGMove(2);
-     // break;
     }// end switch
   }// end Cam Moviments
   if(State == 3) // Tlt and Roll
@@ -241,9 +237,6 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(17);
       break;
-     // case 'P':
-     // LGMove(2);
-     // break;
     }// end switch
   }// end Tlt and Roll
 }
@@ -286,7 +279,6 @@ void grupos(int rec)
   switch (rec)
   {
     case 17:// First Group
-    //Serial.println("Grupo 1");
     digitalWrite(_pinOut,!digitalRead(_pinOut)); delay(500);
     digitalWrite(_pinOut,!digitalRead(_pinOut));
     for(t =0; t<4;t++)VR3.write(headVoice[t]);
@@ -294,21 +286,18 @@ void grupos(int rec)
     for(h =0; h<11;h++)VR3.write(groups[0] [h]);
     break;
     case 18:// First Group
-    //Serial.println("Grupo 2");
     for(int p =0;p<4;p++){digitalWrite(_pinOut,!digitalRead(_pinOut)); delay(500);}
     for(t =0; t<4;t++)VR3.write(headVoice[t]);
     delay(500);
     for(h =0; h<11;h++)VR3.write(groups[1] [h]);
     break;
     case 19:// First Group
-    //Serial.println("Grupo 3");
     for(int p =0;p<6;p++){digitalWrite(_pinOut,!digitalRead(_pinOut)); delay(500);}
     for(t =0; t<4;t++)VR3.write(headVoice[t]);
     delay(500);
     for(h =0; h<11;h++)VR3.write(groups[2] [h]);
     break;
     case 20:// First Group
-    //Serial.println("Grupo 4");
     for(int p =0;p<8;p++){digitalWrite(_pinOut,!digitalRead(_pinOut)); delay(500);}
     for(t =0; t<4;t++)VR3.write(headVoice[t]);
     delay(500);
