@@ -5,8 +5,8 @@ SoftwareSerial VR3(22,23);
 const char* ssid = "Ilana"; //add
 const char* password =  "32513296"; //add
 const uint16_t port = 8000; //add
-const char * host = "192.168.0.3"; //add
-//WiFiClient client;
+const char * host = "192.168.0.5"; //add
+WiFiClient client;
 //-------------------------------------------------- Voice Commands
 byte a[27];
 int rec =18;
@@ -91,12 +91,19 @@ void loop()
     received = GetRec();
     if (received <17 && received>0)
     {
-      Serial.println(received);
+     // Serial.println(received);
       Serial.println(MakeKML(Coordnates[received-1][0],Coordnates[received-1][1],Coordnates[received-1][2])); 
+        if (client.connect(host, port)){ client.print(MakeKML(Coordnates[received-1][0],Coordnates[received-1][1],Coordnates[received-1][2]));}
+        client.stop();
     }
   //--------------------------------------------------
    int key = LGKey.KeyPress(); // KEYBOARD FUNCTION
-   if(key){Serial.println(MakeKML(Coordnates[key-1][0],Coordnates[key-1][1],Coordnates[key-1][2]));}
+   if(key)
+   {
+    Serial.println(MakeKML(Coordnates[key-1][0],Coordnates[key-1][1],Coordnates[key-1][2]));
+     if (client.connect(host, port)){ client.print(MakeKML(Coordnates[key-1][0],Coordnates[key-1][1],Coordnates[key-1][2]));}
+     client.stop();
+    }
 
    char joy = joystic.JoysticRead();// JOYSTICK FUNCTION
    if(joy)
@@ -140,14 +147,13 @@ void loop()
 //-------------------------------------------------------------------------------------------------------
 void LGMove(int Command)
 {
-  WiFiClient client;
   if (client.connect(host, port)) 
   {
     client.print(Commands[Command]);
   }
   client.stop();
   
- //Serial.println(Commands[Command]);
+ Serial.println(Commands[Command]);
 }
 //-------------------------------------------------------------------------------------------------------
 
