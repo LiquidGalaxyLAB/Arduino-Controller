@@ -38,6 +38,7 @@ String Coordnates[16][3]={
   };
 int moviment, moviment2,moviment3 =0;
 int movJoy =1;
+int tourPin =15;
 
 void setup() 
 {
@@ -64,7 +65,7 @@ delay(100);
 
 void loop() 
 {   
-  //if(digitalRead(5))Tour(15);
+    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(15);}
     if(digitalRead(5))
     { while(digitalRead(5) == HIGH){} 
       grupos(rec);
@@ -219,10 +220,18 @@ void JoysticAnalyser(int State, char Position)
 //-------------------------------------------------------------------------------------------------------
 void Tour(int Time)
 {
+  int Tb,Ta;
   for(int tour;tour<16;tour++)
   {
+    Tb = millis();
+    Ta = millis();
     Serial.println(MakeKML(Coordnates[tour][0],Coordnates[tour][1],Coordnates[tour][2]));
-    delay(Time*1000);
+    //delay(Time*1000);
+    while((Tb - Ta) <(Time*1000))
+    { 
+     // if(digitalRead(tourPin)) return;
+      Tb = millis();
+    }
   }
 }
 //-------------------------------------------------------------------------------------------------------
