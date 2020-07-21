@@ -216,12 +216,9 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () {
                             debugPrint("Settings");
                           },
-                          leading: Icon(Icons.settings),
-                          title: Text("Settings"),
+                          leading: Icon(Icons.location_on),
+                          title: Text("Places"),
                         ),
-
-
-
                       ],
                     ),
                   );
