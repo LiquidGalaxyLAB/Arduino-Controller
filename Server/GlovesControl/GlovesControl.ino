@@ -1,6 +1,12 @@
+#include <WiFi.h> // add
+const char* ssid = "Ilana"; //add
+const char* password =  "32513296"; //add
+const uint16_t port = 8000; //add
+const char * host = "192.168.0.5"; //add
+WiFiClient client;
+
 #include <Wire.h>
 #include <ADXL345.h>
-
 ADXL345 adxl; //variable adxl is an instance of the ADXL345 library
 
 String Commands[]={"zero","linear","zOut","zIn","right","left","up","down","rightUp","rightDown","leftUp","leftDown",
@@ -27,6 +33,15 @@ int tag,tag2,tag3,tagx,tagx2,tagx3,count =0;
 void setup()
 {
   Serial.begin(9600);
+  //----------------------------------
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.println("...");
+  }
+  Serial.print("WiFi connected with IP: ");
+  Serial.println(WiFi.localIP());
+  //----------------------------------
   adxl.powerOn();
   pinMode(button, INPUT);
   pinMode(tour, INPUT);
@@ -43,9 +58,9 @@ void loop()
     while (digitalRead(tour)){}
     Tour(count);
     count ++;
-    if(count == 3) count =0;
+    if(count == 16) count =0;
   }
-	  adxl.readXYZ(&x, &y, &z); //read the accelerometer values and store them in variables  x,y,z
+    adxl.readXYZ(&x, &y, &z); //read the accelerometer values and store them in variables  x,y,z
 if (digitalRead(button)) 
 { //Serial.println("erro");
   control ++;
@@ -86,6 +101,11 @@ switch (control)
 }
 void LGMove(int Command)
 {
+   if (client.connect(host, port)) 
+     {
+       client.print(Commands[Command]);
+     }
+      client.stop();
  Serial.println(Commands[Command]);
 }
 
@@ -121,6 +141,7 @@ String MakeKML(String longitude, String latitude, String range)
 }
 void Tour(int place)
 {
+  if (client.connect(host, port)){ client.print(MakeKML(Coordnates[place][0],Coordnates[place][1],Coordnates[place][2]));}
+     client.stop();
    Serial.println(MakeKML(Coordnates[place][0],Coordnates[place][1],Coordnates[place][2]));
-
 }
