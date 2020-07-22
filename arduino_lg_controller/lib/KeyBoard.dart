@@ -17,7 +17,90 @@ class KeyBoardPage extends StatelessWidget {
         height: size.height,
         child: Column(
           children: <Widget>[
-            Container(height: 8,color: Colors.white,),
+            Container(height: 2,color: Colors.white,),
+            Container(
+              width: size.width,
+              height: 40,
+              child: Center(
+                  child: Text("Insert the places you want to navigate",textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.blue,fontSize: 20,fontWeight: FontWeight.w700,
+                    ),
+                  )),
+            ),
+            Container(
+              width: size.width,
+              height: 60 ,
+              color: Colors.white,
+              child: LayoutBuilder(
+                builder: (_,constraints){
+                  return Row(
+                    children: <Widget>[
+                      Container(
+                        width: constraints.maxWidth*.02,
+                        height: constraints.maxHeight*.80,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child: RaisedButton(
+                            onPressed: (){ },
+                            child: Text("Send", style: TextStyle(
+                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                            ),
+                            color: Colors.blue,
+                            elevation: 10,
+                          ),
+                        ),
+                        width: constraints.maxWidth*.25,
+                        height: constraints.maxHeight*.70,
+                      ),
+                      Container(
+                        width: constraints.maxWidth*.02,
+                        height: constraints.maxHeight*.80,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child: RaisedButton(
+                            onPressed: (){ },
+                            child: Text("Get", style: TextStyle(
+                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                            ),
+                            color: Colors.blue,
+                            elevation: 10,
+                          ),
+                        ),
+                        width: constraints.maxWidth*.25,
+                        height: constraints.maxHeight*.70,
+                      ),
+                      Container(
+                        width: constraints.maxWidth*.02,
+                        height: constraints.maxHeight*.80,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child: RaisedButton(
+                            onPressed: (){ },
+                            child: Text("Examples", style: TextStyle(
+                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                            ),
+                            color: Colors.blue,
+                            elevation: 10,
+                          ),
+                        ),
+                        width: constraints.maxWidth*.41,
+                        height: constraints.maxHeight*.70,
+                      )
+                    ],
+
+                  );
+                },
+              ),
+              //child: IconButton(icon: Icon(Icons.send,color: Colors.blue,size: 35,), onPressed: (){}),
+            ),
+            Container(
+              width: 20,
+              height: 10,
+            ),
             Expanded(
               child: Container(
                 child: LayoutBuilder(
@@ -27,34 +110,11 @@ class KeyBoardPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          width: 0.03,
-                          height: constraints.maxHeight ,
-                          color: Colors.white,
-                        ),
-                        Container(
-                          width: constraints.maxWidth*.62,
+                          width: constraints.maxWidth*.95,
                           height: constraints.maxHeight,
                           color: Colors.blue,
                           child: ListView(
                             children: <Widget>[
-                              Container(
-                                height: constraints.maxHeight* .1,
-                                child: Center(
-                                    child: Text("Insert the places you want to navigate",textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.white,fontSize: 18,fontWeight: FontWeight.w700,
-                                    ),
-                                    )),
-                              ),
-                              Container(
-                                color: Colors.white30,
-                                width: size.width,
-                                height: 10,
-                              ),
-                              //Divider(
-                                //height: 3,
-                                //color: Colors.white,
-                             // ),
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
@@ -314,92 +374,13 @@ class KeyBoardPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          width: constraints.maxWidth*.35,
-                          height: constraints.maxHeight ,
-                          color: Colors.white,
-                          child: LayoutBuilder(
-                            builder: (_,constraints){
-                              return Column(
-                                children: <Widget>[
-                                  Container(
-                                    child: Column(
-                                      children: <Widget>[
-                                        Container(
-                                          child: SizedBox(
-                                            child: RaisedButton(
-                                              onPressed: (){
-
-                                              },
-                                              child: Text("Send", style: TextStyle(
-                                                    color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
-                                              ),
-                                              color: Colors.blue,
-                                              elevation: 10,
-                                            ),
-                                          ),
-                                          width: constraints.maxWidth*.85,
-                                          height: constraints.maxHeight* .1,
-                                        ),
-
-                                        Container(
-                                          color: Colors.white,
-                                          width: size.width,
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          child: SizedBox(
-                                            child: RaisedButton(
-                                              onPressed: (){
-
-                                              },
-                                              child: Text("Get", style: TextStyle(
-                                                  color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
-                                              ),
-                                              color: Colors.blue,
-                                              elevation: 10,
-                                            ),
-                                          ),
-                                          width: constraints.maxWidth*.85,
-                                          height: constraints.maxHeight* .1,
-                                        ),
-                                        Container(
-                                          color: Colors.white,
-                                          width: size.width,
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          child: SizedBox(
-                                            child: RaisedButton(
-                                              onPressed: (){
-
-                                              },
-                                              child: Text("Examples", style: TextStyle(
-                                                  color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
-                                              ),
-                                              color: Colors.blue,
-                                              elevation: 10,
-                                            ),
-                                          ),
-                                          width: constraints.maxWidth*.85,
-                                          height: constraints.maxHeight* .1,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              );
-                            },
-                          ),
-                          //child: IconButton(icon: Icon(Icons.send,color: Colors.blue,size: 35,), onPressed: (){}),
-                        )
                       ],
                     );
                   },
                 ),
               ),
             ),
-            Container(height: 8,color: Colors.white,)
+            //Container(height: 8,color: Colors.white,)
           ],
         ),
         ),
