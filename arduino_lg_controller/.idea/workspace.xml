@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c39c585c-bb52-42f9-abf5-16cc11792397" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/lib/BluetoohPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/BluetoohPage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/KeyBoard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/KeyBoard.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Ultrasonic.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Ultrasonic.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1cEAjTxksBLiYNae8zt3bLSzoXf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\otavi\AndroidStudioProjects\arduino_lg_controller\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\otavi\AndroidStudioProjects\arduino_lg_controller\assets" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\otavi\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c39c585c-bb52-42f9-abf5-16cc11792397" name="Default Changelist" comment="" />
+      <created>1590083513704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590083513704</updated>
+    </task>
+    <task id="LOCAL-00001" summary="KeyBoard Page Construction">
+      <created>1592428589864</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592428589864</updated>
+    </task>
+    <task id="LOCAL-00002" summary="KeyBoard Page layout improvement">
+      <created>1592428878747</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592428878747</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Start Voice Page">
+      <created>1592429868275</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592429868275</updated>
+    </task>
+    <task id="LOCAL-00004" summary="UltrasonicPage Start">
+      <created>1593058900076</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1593058900076</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Layout modifications">
+      <created>1595384873431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1595384873431</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="KeyBoard Page Construction" />
+    <MESSAGE value="KeyBoard Page layout improvement" />
+    <MESSAGE value="Start Voice Page" />
+    <MESSAGE value="UltrasonicPage Start" />
+    <MESSAGE value="Layout modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layout modifications" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592608658739">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592608658739" />
+    <state x="363" y="92" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1592430591784">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="363" y="92" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592430591784" />
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592329174307">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592329174307" />
+    <state x="327" y="0" key="CommitChangelistDialog2" timestamp="1595384872262">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="327" y="0" key="CommitChangelistDialog2/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595384872262" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1595451044346">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595451044346" />
+    <state x="1713" y="119" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1024.728@1366.0.1024.728" timestamp="1595447583450" />
+    <state x="532" y="257" width="670" height="349" key="Github.ShareDialog" timestamp="1592408672736">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="532" y="257" width="670" height="349" key="Github.ShareDialog/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592408672736" />
+    <state width="1323" height="109" key="GridCell.Tab.0.bottom" timestamp="1595461399438">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="109" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595461399438" />
+    <state width="1323" height="109" key="GridCell.Tab.0.center" timestamp="1595461399437">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="109" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595461399437" />
+    <state width="1323" height="109" key="GridCell.Tab.0.left" timestamp="1595461399437">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="109" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595461399437" />
+    <state width="1323" height="109" key="GridCell.Tab.0.right" timestamp="1595461399437">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="109" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595461399437" />
+    <state x="357" y="63" width="660" height="602" key="NewModule_or_Project.wizard" timestamp="1592508187385">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="357" y="63" width="660" height="602" key="NewModule_or_Project.wizard/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592508187385" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1595450928535">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595450928535" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1595384889795">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595384889795" />
+    <state x="93" y="100" width="782" height="535" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1595178886906">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="93" y="100" width="782" height="535" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1595178886906" />
+    <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1592426551316">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="676" y="0" width="697" height="735" key="dock-window-1/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592426551316" />
+    <state x="455" y="53" key="svn.repositoryBrowser" timestamp="1592408607873">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="455" y="53" key="svn.repositoryBrowser/0.0.1366.728/1366.0.1024.728@0.0.1366.728" timestamp="1592408607873" />
+  </component>
+</project>
