@@ -7,9 +7,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:arduinolgcontroller/main.dart';
 import 'package:flutterappbosta/main.dart';
+
+//import 'package:arduinolgcontroller/main.dart';
+//import 'package:flutterappbosta/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
