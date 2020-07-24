@@ -1,3 +1,4 @@
+import 'package:controllerapp/AddPlaces.dart';
 import 'package:flutter/material.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -216,7 +217,9 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            debugPrint("Settings");
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPlace()));
+                            closeDrawer();
+                           //debugPrint("Settings");
                           },
                           leading: Icon(Icons.location_on),
                           title: Text("Places"),
