@@ -2,14 +2,17 @@ import 'dart:ui';
 import 'package:controllerapp/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 String coordenada;
+List<String> _list = List();
 
 class AddPlace extends StatelessWidget {
   final TextEditingController textEditingController  = new TextEditingController();
   final TextEditingController textEditingControllerLo  = new TextEditingController();
   final TextEditingController textEditingControllerLa  = new TextEditingController();
   final TextEditingController textEditingControllerRa  = new TextEditingController();
+  //List<String> _list = List();
   @override
   Widget build(BuildContext context) {
     var appBar = AppBar(title: Text("List PLaces"));
@@ -26,14 +29,16 @@ class AddPlace extends StatelessWidget {
             Container(
               width: size.width,
               height: 40,
+              color: Colors.white,
               child: Center(
                   child: Text("Insert the places you want to navigate",textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.blue,fontSize: 20,fontWeight: FontWeight.w700,
+                      color: Colors.blue,fontSize: 18,fontWeight: FontWeight.w700,
                     ),
                   )),
             ),
             Container(
+              alignment: Alignment.topLeft,
               width: size.width,
               height: 60 ,
               color: Colors.white,
@@ -41,15 +46,104 @@ class AddPlace extends StatelessWidget {
                 builder: (_,constraints){
                   return Row(
                     children: <Widget>[
+                      //Padding(padding: EdgeInsets.only(right: 50)),
                       Container(
-                        width: constraints.maxWidth*.02,
+                        width: constraints.maxWidth*.45,
                         height: constraints.maxHeight*.80,
                       ),
                       Container(
                         child: SizedBox(
                           child: RaisedButton(
-                            onPressed: (){_sendMessage(textEditingController.text);},
-                            child: Text("Send", style: TextStyle(
+                            onPressed: (){
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible:false,
+                                builder: (BuildContext context){
+                                    return AlertDialog(
+                                      title: Text('Add Places'),
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: <Widget>[
+                                            TextFormField(
+                                              keyboardType: TextInputType.text,
+                                              controller: textEditingController,
+                                              validator:(value){
+                                                if(value.trim().isEmpty){
+                                                  return 'Task field it\'s required';
+                                                }
+                                                return null;
+                                              },
+                                              decoration: InputDecoration(
+                                               hintText: "Place Name",
+                                                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                              ),
+                                            ),
+                                            Container(height:10,),
+                                            TextFormField(
+                                              keyboardType: TextInputType.number,
+                                              controller: textEditingControllerLo,
+                                              validator:(value){
+                                                if(value.trim().isEmpty){
+                                                  return 'Task field it\'s required';
+                                                }
+                                                return null;
+                                              },
+                                              decoration: InputDecoration(
+                                                  hintText: "Longitude",
+                                                  contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                              ),
+                                            ),
+                                            Container(height:10,),
+                                            TextFormField(
+                                              keyboardType: TextInputType.number,
+                                              controller: textEditingControllerLa,
+                                              validator:(value){
+                                                if(value.trim().isEmpty){
+                                                  return 'Task field it\'s required';
+                                                }
+                                                return null;
+                                              },
+                                              decoration: InputDecoration(
+                                                  hintText: "Latitude",
+                                                  contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                              ),
+                                            ),
+                                            Container(height:10,),
+                                            TextFormField(
+                                              keyboardType: TextInputType.number,
+                                              controller: textEditingControllerRa,
+                                              decoration: InputDecoration(
+                                                  hintText: "Range",
+                                                  contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        RaisedButton(
+                                          color:Colors.red,
+                                          child: Text('Cancel'),
+                                          onPressed: (){Navigator.of(context).pop();},
+                                        ),
+                                        RaisedButton(
+                                          color:Colors.blue,
+                                          child: Text('Add'),
+                                          onPressed: (){
+                                            _list.add(textEditingController.text+':  '+textEditingControllerLo.text +'-'+textEditingControllerLa.text+'-'+textEditingControllerRa.text);
+                                            _closeInput();
+                                            Navigator.of(context).pop();},
+                                        )
+                                      ],
+                                    );
+                                }
+                              );
+                            },
+                            child: Text("Add", style: TextStyle(
                                 color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
                             ),
                             color: Colors.blue,
@@ -58,6 +152,7 @@ class AddPlace extends StatelessWidget {
                         ),
                         width: constraints.maxWidth*.25,
                         height: constraints.maxHeight*.70,
+                        alignment: Alignment.topCenter,
                       ),
                       Container(
                         width: constraints.maxWidth*.02,
@@ -67,96 +162,16 @@ class AddPlace extends StatelessWidget {
                         child: SizedBox(
                           child: RaisedButton(
                             onPressed: (){ },
-                            child: Text("Get", style: TextStyle(
+                            child: Text("Save", style: TextStyle(
                                 color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
                             ),
-                            color: Colors.blue,
+                            color: Colors.green,
                             elevation: 10,
                           ),
                         ),
                         width: constraints.maxWidth*.25,
                         height: constraints.maxHeight*.70,
-                      ),
-                      Container(
-                        width: constraints.maxWidth*.02,
-                        height: constraints.maxHeight*.80,
-                      ),
-                      Container(
-                        child: SizedBox(
-                          child: RaisedButton(
-                            onPressed: (){ },
-                            child: Text("Examples", style: TextStyle(
-                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
-                            ),
-                            color: Colors.blue,
-                            elevation: 10,
-                          ),
-                        ),
-                        width: constraints.maxWidth*.41,
-                        height: constraints.maxHeight*.70,
-                      )
-                    ],
-                  );
-                },
-              ),
-              //child: IconButton(icon: Icon(Icons.send,color: Colors.blue,size: 35,), onPressed: (){}),
-            ),
-            Container(
-              width: size.width*.95,
-              height: 225,
-              color: Colors.blue,
-              child: LayoutBuilder(
-                builder: (_,consttrainsts){
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        child: new TextFormField(
-                          keyboardType: TextInputType.text,
-                          controller: textEditingController,
-                          decoration: InputDecoration(
-                            labelText: "Place",
-                            labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12,),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        child:
-                        TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: textEditingControllerLo,
-                          decoration: InputDecoration(
-                            labelText: "Longitude",
-                            labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12,),
-                          ),
-                        ),
-                      ),
-
-                      Container(
-                        child:
-                        TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: textEditingControllerLa,
-                          decoration: InputDecoration(
-                            labelText: "Latitude",
-                            labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12,),
-                          ),
-                        ),
-
-                      ),
-
-                      Container(
-                        child:
-                        TextFormField(
-                          keyboardType: TextInputType.phone,
-                          controller: textEditingControllerRa,
-                          decoration: InputDecoration(
-                            labelText: "Range",
-                            labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12,),
-                          ),
-                        ),
-
+                        alignment: Alignment.topCenter,
                       ),
                     ],
                   );
@@ -165,38 +180,44 @@ class AddPlace extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                child: LayoutBuilder(
-                  builder: (_,constraints) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: constraints.maxWidth*.95,
-                          height: constraints.maxHeight*.9,
-                          color: Colors.green,
-                          child: ListView(
-                            children: <Widget>[
-                              ListTile(
-                                title: Text(textEditingController.text + '-'+
-                                    textEditingControllerLo.text + ','+
-                                    textEditingControllerLa.text + ','+
-                                    textEditingControllerRa.text ),
-                              ),
-                            ],
-                          ),
+               // child: ListView.builder(
+                //  itemCount: _list.length,
+                //  itemBuilder: (context, index){
+                //    return Card(
+                //      child: ListTile(
+                 //       title: Text(_list[index]),
+                 //     ),
+                 //   );
+                 // },
+                //),
+                child: ListView.builder(
+                  itemCount: _list.length,
+                  itemBuilder:(BuildContext context, int i){
+                    Map list = _list[i];
+                    return Card(
+                      child: ListTile(
+                        leading: GestureDetector(
+                          child: Icon(Icons.place),
                         ),
-                      ],
+                        title: Text(_list['name']),
+                        subtitle: Text('$_list'),
+                      ),
                     );
-                  },
-                ),
+                  }
+                )
               ),
-            ),
+            )
             //Container(height: 8,color: Colors.white,)
           ],
         ),
       ),
     );
+  }
+  void _closeInput () async{
+    textEditingController .clear();
+    textEditingControllerLo.clear();
+    textEditingControllerLa.clear();
+    textEditingControllerRa.clear();
   }
   void _sendMessage (String text) async{
     textEditingController .clear();
