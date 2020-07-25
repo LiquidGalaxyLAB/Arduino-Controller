@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   flutter_bluetooth_serial: ^0.2.2
+  flutter_slidable: ^0.5.5
   foldable_sidebar: ^1.0.0
   swipedetector: ^1.2.0
 

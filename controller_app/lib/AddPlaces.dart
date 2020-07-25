@@ -3,9 +3,11 @@ import 'package:controllerapp/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 String coordenada;
 List<String> _list = List();
+int listIndex;
 
 class AddPlace extends StatelessWidget {
   final TextEditingController textEditingController  = new TextEditingController();
@@ -13,11 +15,14 @@ class AddPlace extends StatelessWidget {
   final TextEditingController textEditingControllerLa  = new TextEditingController();
   final TextEditingController textEditingControllerRa  = new TextEditingController();
   //List<String> _list = List();
+
+
   @override
   Widget build(BuildContext context) {
     var appBar = AppBar(title: Text("List PLaces"));
     var size = MediaQuery.of(context).size;
     String local;
+
     return Scaffold(
       appBar: appBar,
       body: Container(
@@ -48,7 +53,75 @@ class AddPlace extends StatelessWidget {
                     children: <Widget>[
                       //Padding(padding: EdgeInsets.only(right: 50)),
                       Container(
-                        width: constraints.maxWidth*.45,
+                        width: constraints.maxWidth*.20,
+                        height: constraints.maxHeight*.80,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child: RaisedButton(
+                            onPressed: (){
+                              showDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context){
+                                    return AlertDialog(
+                                      title: Text('Delete'),
+                                      content: Text('If you click delete the list will be deleted and cannot be recovered'),
+                                      actions: <Widget>[
+                                        RaisedButton(
+                                          color: Colors.green,
+                                          child: Text('Cancel'),
+                                          onPressed: (){
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                        RaisedButton(
+                                          color: Colors.red,
+                                          child: Text('Delete'),
+                                          onPressed: (){
+                                            var end = _list.length;
+                                            _list.removeRange(0,end);
+                                            Navigator.of(context).pop();
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPlace()));
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  }
+                              );
+                            },
+                            child: Text("Delete", style: TextStyle(
+                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                            ),
+                            color: Colors.red,
+                            elevation: 10,
+                          ),
+                        ),
+                        width: constraints.maxWidth*.25,
+                        height: constraints.maxHeight*.70,
+                        alignment: Alignment.topCenter,
+                      ),
+                      Container(
+                        width: constraints.maxWidth*.02,
+                        height: constraints.maxHeight*.80,
+                      ),
+                      Container(
+                        child: SizedBox(
+                          child: RaisedButton(
+                            onPressed: (){ },
+                            child: Text("Save", style: TextStyle(
+                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
+                            ),
+                            color: Colors.green,
+                            elevation: 10,
+                          ),
+                        ),
+                        width: constraints.maxWidth*.25,
+                        height: constraints.maxHeight*.70,
+                        alignment: Alignment.topCenter,
+                      ),
+                      Container(
+                        width: constraints.maxWidth*.02,
                         height: constraints.maxHeight*.80,
                       ),
                       Container(
@@ -58,7 +131,7 @@ class AddPlace extends StatelessWidget {
                               showDialog(
                                   context: context,
                                   barrierDismissible:false,
-                                builder: (BuildContext context){
+                                  builder: (BuildContext context){
                                     return AlertDialog(
                                       title: Text('Add Places'),
                                       content: SingleChildScrollView(
@@ -74,9 +147,9 @@ class AddPlace extends StatelessWidget {
                                                 return null;
                                               },
                                               decoration: InputDecoration(
-                                               hintText: "Place Name",
-                                                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                                  hintText: "Place Name",
+                                                  contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
                                               ),
                                             ),
                                             Container(height:10,),
@@ -126,7 +199,7 @@ class AddPlace extends StatelessWidget {
                                       ),
                                       actions: <Widget>[
                                         RaisedButton(
-                                          color:Colors.red,
+                                          color:Colors.green,
                                           child: Text('Cancel'),
                                           onPressed: (){Navigator.of(context).pop();},
                                         ),
@@ -140,32 +213,13 @@ class AddPlace extends StatelessWidget {
                                         )
                                       ],
                                     );
-                                }
+                                  }
                               );
                             },
                             child: Text("Add", style: TextStyle(
                                 color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
                             ),
                             color: Colors.blue,
-                            elevation: 10,
-                          ),
-                        ),
-                        width: constraints.maxWidth*.25,
-                        height: constraints.maxHeight*.70,
-                        alignment: Alignment.topCenter,
-                      ),
-                      Container(
-                        width: constraints.maxWidth*.02,
-                        height: constraints.maxHeight*.80,
-                      ),
-                      Container(
-                        child: SizedBox(
-                          child: RaisedButton(
-                            onPressed: (){ },
-                            child: Text("Save", style: TextStyle(
-                                color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
-                            ),
-                            color: Colors.green,
                             elevation: 10,
                           ),
                         ),
@@ -180,34 +234,156 @@ class AddPlace extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-               // child: ListView.builder(
-                //  itemCount: _list.length,
-                //  itemBuilder: (context, index){
-                //    return Card(
-                //      child: ListTile(
-                 //       title: Text(_list[index]),
-                 //     ),
-                 //   );
-                 // },
-                //),
                 child: ListView.builder(
                   itemCount: _list.length,
-                  itemBuilder:(BuildContext context, int i){
-                    Map list = _list[i];
+                  itemBuilder: (context, index){
                     return Card(
-                      child: ListTile(
-                        leading: GestureDetector(
-                          child: Icon(Icons.place),
+                      child: Slidable(
+                        actionPane: SlidableDrawerActionPane(),
+                        actionExtentRatio: 0.25,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.green,
+                            child: Text("$index"),
+                            foregroundColor: Colors.white,
+                          ),
+                          title: Text(_list[index]),
+                          onTap: (){
+                            showDialog(
+                                context: context,
+                                barrierDismissible:false,
+                                builder: (BuildContext context){
+                                  return AlertDialog(
+                                    title: Text('Edit Places'),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: <Widget>[
+                                          TextFormField(
+                                            keyboardType: TextInputType.text,
+                                            controller: textEditingController,
+                                            validator:(value){
+                                              if(value.trim().isEmpty){
+                                                return 'Task field it\'s required';
+                                              }
+                                              return null;
+                                            },
+                                            decoration: InputDecoration(
+                                                hintText: "Place Name",
+                                                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                            ),
+                                          ),
+                                          Container(height:10,),
+                                          TextFormField(
+                                            keyboardType: TextInputType.number,
+                                            controller: textEditingControllerLo,
+                                            validator:(value){
+                                              if(value.trim().isEmpty){
+                                                return 'Task field it\'s required';
+                                              }
+                                              return null;
+                                            },
+                                            decoration: InputDecoration(
+                                                hintText: "Longitude",
+                                                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                            ),
+                                          ),
+                                          Container(height:10,),
+                                          TextFormField(
+                                            keyboardType: TextInputType.number,
+                                            controller: textEditingControllerLa,
+                                            validator:(value){
+                                              if(value.trim().isEmpty){
+                                                return 'Task field it\'s required';
+                                              }
+                                              return null;
+                                            },
+                                            decoration: InputDecoration(
+                                                hintText: "Latitude",
+                                                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                            ),
+                                          ),
+                                          Container(height:10,),
+                                          TextFormField(
+                                            keyboardType: TextInputType.number,
+                                            controller: textEditingControllerRa,
+                                            decoration: InputDecoration(
+                                                hintText: "Range",
+                                                contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(32))
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      RaisedButton(
+                                        color:Colors.green,
+                                        child: Text('Cancel'),
+                                        onPressed: (){Navigator.of(context).pop();},
+                                      ),
+                                      RaisedButton(
+                                        color:Colors.blue,
+                                        child: Text('Save'),
+                                        onPressed: (){
+                                          //_list.add(textEditingController.text+':  '+textEditingControllerLo.text +'-'+textEditingControllerLa.text+'-'+textEditingControllerRa.text);
+                                          //_list.removeAt(index);
+                                          _closeInput();
+                                          Navigator.of(context).pop();},
+                                      )
+                                    ],
+                                  );
+                                }
+                            );
+                          }, // Adicionar Campo Editar
                         ),
-                        title: Text(_list['name']),
-                        subtitle: Text('$_list'),
+                        secondaryActions: <Widget>[
+                          IconSlideAction(
+                            caption: 'Delete',
+                            color: Colors.red,
+                            icon: Icons.delete_forever,
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (BuildContext context){
+                                  return AlertDialog(
+                                    title: Text('Delete'),
+                                    content: Text('If you click delete the file will be deleted and cannot be recovered'),
+                                    actions: <Widget>[
+                                      RaisedButton(
+                                        color: Colors.green,
+                                        child: Text('Cancel'),
+                                        onPressed: (){
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      RaisedButton(
+                                        color: Colors.red,
+                                        child: Text('Delete'),
+                                        onPressed: (){
+                                          _list.removeAt(index);
+                                          Navigator.of(context).pop();
+                                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPlace()));
+                                        },
+                                      )
+                                    ],
+                                  );
+                                }
+                              );
+                            },
+                          )
+                        ],
                       ),
                     );
-                  }
-                )
-              ),
-            )
+                  },
+                ),
+                ),
+              //),
             //Container(height: 8,color: Colors.white,)
+            )
           ],
         ),
       ),
