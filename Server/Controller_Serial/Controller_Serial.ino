@@ -65,7 +65,8 @@ delay(100);
 
 void loop() 
 {   
-    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(15);}
+    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(8);}
+    
     if(digitalRead(5))
     { while(digitalRead(5) == HIGH){} 
       grupos(rec);
@@ -171,9 +172,6 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(5);
       break;
-      //case 'P':
-      //LGMove(2);
-      //break;
     }// end switch
   }// end Simple Moviments
   if(State == 2) // Camera Moviments
@@ -191,9 +189,6 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(15);
       break;
-     // case 'P':
-     // LGMove(2);
-     // break;
     }// end switch
   }// end Cam Moviments
   if(State == 3) // Tlt and Roll
@@ -211,9 +206,6 @@ void JoysticAnalyser(int State, char Position)
       case 'L':
       LGMove(17);
       break;
-     // case 'P':
-     // LGMove(2);
-     // break;
     }// end switch
   }// end Tlt and Roll
 }
@@ -221,7 +213,7 @@ void JoysticAnalyser(int State, char Position)
 void Tour(int Time)
 {
   int Tb,Ta;
-  for(int tour;tour<16;tour++)
+  for(int tour = 0;tour<16;tour++)
   {
     Tb = millis();
     Ta = millis();
@@ -229,7 +221,7 @@ void Tour(int Time)
     //delay(Time*1000);
     while((Tb - Ta) <(Time*1000))
     { 
-     // if(digitalRead(tourPin)) return;
+      if(digitalRead(tourPin)) tour =16;
       Tb = millis();
     }
   }

@@ -1,5 +1,5 @@
 ###########################################################################
-Before running the OSC server script, install these dependencies
+Before running the server script, install these dependencies
   
 ###########################################################################
 
