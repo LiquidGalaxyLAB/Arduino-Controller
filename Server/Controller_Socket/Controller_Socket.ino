@@ -45,11 +45,11 @@ String Coordnates[16][3]={
 int moviment, moviment2,moviment3 =0;
 int movJoy =1;
 int tourPin =15;
-int clicleTimeInit, cicleTimeEnd;
+int cicleTimeInit, cicleTimeEnd;
 
 void setup() 
 {
-  clicleTimeInit = cicleTimeEnd = millis();
+  cicleTimeInit = cicleTimeEnd = millis();
   Serial.begin(9600);
   //----------------------------------
   WiFi.begin(ssid, password);
@@ -57,7 +57,7 @@ void setup()
     delay(500);
     Serial.println("...");
     cicleTimeEnd = millis();
-    if((cicleTimeEnd - clicleTimeInit)> (2000))ESP.restart(); // This function restart the ESP32 if it dont connect in 7 seconds
+    if((cicleTimeEnd - cicleTimeInit)> (2000))ESP.restart(); // This function restart the ESP32 if it dont connect in 7 seconds
   }
  
   Serial.print("WiFi connected with IP: ");
@@ -85,7 +85,8 @@ delay(100);
 
 void loop() 
 {   
-    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(10);} 
+    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(8);} 
+    
     if(digitalRead(5))
     { while(digitalRead(5) == HIGH){} 
       grupos(rec);
@@ -253,7 +254,7 @@ void Tour(int Time)
     //delay(Time*1000);
     while((Tb - Ta) <(Time*1000))
     { 
-      if(digitalRead(tourPin)) { while(digitalRead(tourPin)){} return;}
+      if(digitalRead(tourPin)) tour =16;
       Tb = millis();
     }
   }

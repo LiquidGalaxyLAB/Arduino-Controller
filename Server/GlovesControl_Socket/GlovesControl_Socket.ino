@@ -29,6 +29,7 @@ int xLimitD = -170;
 int yLimitUp = 245; 
 int yLimitD = -245;
 int tag,tag2,tag3,tagx,tagx2,tagx3,count =0;
+int cicleTimeInit, cicleTimeEnd;
 
 void setup()
 {
@@ -38,6 +39,8 @@ void setup()
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.println("...");
+    cicleTimeEnd = millis();
+    if((cicleTimeEnd - cicleTimeInit)> (2000))ESP.restart(); // This function restart the ESP32 if it dont connect in 7 seconds
   }
   Serial.print("WiFi connected with IP: ");
   Serial.println(WiFi.localIP());
