@@ -1,4 +1,6 @@
 import 'package:controllerapp/AddPlaces.dart';
+import 'package:controllerapp/pages/NetworkInfo.dart';
+import 'package:controllerapp/pages/info.dart';
 import 'package:flutter/material.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
@@ -90,20 +92,11 @@ class FirstScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-          child: SizedBox(
-            child: RaisedButton(
-              onPressed: (){
-
-              },
-              child: Text("Bluetooth Connect", style: TextStyle(
-                  color: Colors.white,fontSize: 20,fontWeight: FontWeight.w700),
-              ),
-              color: Colors.blue,
-              elevation: 10,
-            ),
+          child: Image.asset(
+            "assets/mascot.png",
+            width: 600,
+            height: 600,
           ),
-          width: 200,
-          height: 100,
         ),
       ),
     );
@@ -173,8 +166,8 @@ class CustomDrawer extends StatelessWidget {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>KeyBoardPage()));
                             closeDrawer();
                           },
-                          leading: Icon(Icons.keyboard),
-                          title: Text("Keyboard"),
+                          leading: Icon(Icons.list),
+                          title: Text("My Places"),
                         ),
                         Divider(
                           height: 1,
@@ -185,8 +178,8 @@ class CustomDrawer extends StatelessWidget {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VoicePage()));
                             closeDrawer();
                           },
-                          leading: Icon(Icons.settings_voice),
-                          title: Text("Voice Recognition"),
+                          leading: Icon(Icons.add_to_photos),
+                          title: Text("Examples"),
                         ),
                         Divider(
                           height: 1,
@@ -194,35 +187,25 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UltrasonicPage()));
-                            closeDrawer();
-                          },
-                          leading: Icon(Icons.surround_sound),
-                          title: Text("Ultrasonic"),
-                        ),
-                        Divider(
-                          height: 1,
-                          color: Colors.grey,
-                        ),
-                        ListTile(
-                          onTap: () {
-                            debugPrint("Accelerometer");
-                          },
-                          leading: Icon(Icons.vertical_align_center),
-                          title: Text("Accelerometer"),
-                        ),
-                        Divider(
-                          height: 1,
-                          color: Colors.grey,
-                        ),
-                        ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddPlace()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>NetworkInfo()));
                             closeDrawer();
                            //debugPrint("Settings");
                           },
-                          leading: Icon(Icons.location_on),
-                          title: Text("Places"),
+                          leading: Icon(Icons.wifi),
+                          title: Text("Network Info"),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.grey,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Info()));
+                            closeDrawer();
+                            //debugPrint("Settings");
+                          },
+                          leading: Icon(Icons.info_outline),
+                          title: Text("About"),
                         ),
                       ],
                     ),
