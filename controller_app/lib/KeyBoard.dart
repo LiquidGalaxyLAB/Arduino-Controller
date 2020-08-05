@@ -1,12 +1,15 @@
 import 'dart:ui';
 import 'package:controllerapp/main.dart';
 import 'package:controllerapp/pages/HomeList.dart';
+import 'package:controllerapp/pages/list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 String coordenada;
 
 class KeyBoardPage extends StatelessWidget {
+  static final tag = 'keyboard-page';
+
   final TextEditingController _c  = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -82,8 +85,20 @@ class KeyBoardPage extends StatelessWidget {
                                             color: Colors.blue,
                                             child: Text('Add'),
                                             onPressed: (){
+                                              HomeList.items.add(
+                                                ListTile(
+                                                  leading: Icon(Icons.pages),
+                                                  title: Text(_c.text),
+                                                  trailing: Icon(Icons.settings_applications),
+                                                  onTap: (){
+                                                    Navigator.of(context).pushNamed(ListPage.tag);
+                                                  },
+                                                )
+                                              );
                                               _c.clear();
+                                             //Navigator.pop(context);
                                               Navigator.of(ctx).pop();
+                                              Navigator.of(context).pushNamed(KeyBoardPage.tag);
                                             }
                                         )
                                       ],

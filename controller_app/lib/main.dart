@@ -1,20 +1,31 @@
-import 'package:controllerapp/AddPlaces.dart';
+import 'package:controllerapp/ExamplePages/Football.dart';
+import 'package:controllerapp/ExamplePages/RaccingCircuit.dart';
+import 'package:controllerapp/ExamplePages/WordWonders.dart';
 import 'package:controllerapp/pages/NetworkInfo.dart';
 import 'package:controllerapp/pages/info.dart';
+import 'package:controllerapp/pages/logos.dart';
 import 'package:flutter/material.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import 'BluetoothPage.dart';
 import 'KeyBoard.dart';
-import 'Ultrasonic.dart';
-import 'VoicePage.dart';
+import 'pages/ExamplesPage.dart';
+import 'pages/list.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final routes = <String, WidgetBuilder>{
+    ListPage.tag: (context) => ListPage(),
+    KeyBoardPage.tag: (context) => KeyBoardPage(),
+    ExamplesPage.tag:(context) => ExamplesPage(),
+    FootballPage.tag:(context) => FootballPage(),
+    RaccingPage.tag:(context) => RaccingPage(),
+    WordWondersPage.tag:(context) => WordWondersPage()
+  };
 
   // This widget is the root of your application.
   @override
@@ -27,6 +38,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
+      routes: routes,
     );
   }
 }
@@ -89,17 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          child: Image.asset(
-            "assets/mascot.png",
-            width: 600,
-            height: 600,
-          ),
-        ),
-      ),
-    );
+
+    return LogosPage();
   }
 }
 
@@ -163,7 +166,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>KeyBoardPage()));
+                            Navigator.of(context).pushNamed(KeyBoardPage.tag);
                             closeDrawer();
                           },
                           leading: Icon(Icons.list),
@@ -175,7 +178,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VoicePage()));
+                            Navigator.of(context).pushNamed(ExamplesPage.tag);
                             closeDrawer();
                           },
                           leading: Icon(Icons.add_to_photos),

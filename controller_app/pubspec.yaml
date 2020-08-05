@@ -32,6 +32,7 @@ dependencies:
   flutter_slidable: ^0.5.5
   foldable_sidebar: ^1.0.0
   swipedetector: ^1.2.0
+  url_launcher: ^5.5.0
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,13 @@ flutter:
   assets:
     - assets/lg_logo.png
     - assets/mascot.png
+    - assets/facens.png
+    - assets/gsoc.png
+    - assets/intech3d.JPG
+    - assets/lgLab.png
+    - assets/LogoLGEU.png
+    - assets/pcital.jpg
+    - assets/tic.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
