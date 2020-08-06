@@ -14,7 +14,6 @@ Otávio Jesus França Oliveira - GSoC 2020
 -------------------------------------------------------------*/
 
 #include "Arduino.h"
-#include "SoftwareSerial.h"
 #include "LiquidGalaxyController.h"
 
 LG_JoysticSetup::LG_JoysticSetup(int piny, int pinx, int button,int *_Range) // JOYSTICK CONTROLLER CONFIGURATION FUNCTION
@@ -117,107 +116,6 @@ int LG_Keypad::KeyPress()
 	
 	return 0;
 }
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-LG_VoiceSetup::LG_VoiceSetup(int _pin)
-{
-	_pinOut = _pin;
-	
-	if(_pinOut !=0)
-	{
-    	pinMode(_pinOut,OUTPUT);
-    	digitalWrite(_pinOut,LOW);
-	}
-}
-
-int LG_VoiceSetup::VoiceRead() 
-{
-      if(VR3.available())
-   		 {
-      		for(int i = 0; i<27;i++)
-     		{
-       		 	_z[i] = VR3.read();
-         		delay(1); 
-     		}
-      			if(_z[2] == 13){PinOut(1);return 0;} 
-      			if(_z[2] == 15){PinOut(1);return 0;}
-      			if(_z[2] == 18){PinOut(2);return 0;}
-      			if(_z[2] == 11){PinOut(3);return 1;}
-      			if(_z[2] == 10){PinOut(2);return 0;}
-    	 } 
-}
-
-void LG_VoiceSetup::RecordCommands(int Ncommand)
-{
-   for(int _t=0;_t<3;_t++) {VR3.write(Rec[_t]);} // At this point the first command is sent for to start recording
-   VR3.write(ComandsNumber[Ncommand]);
-   VR3.write(0x0A);
-   
-   delay(1);
-   do
-   {
-    _control = VoiceRead();
-   }while (_control != 1);
-}
-
-void LG_VoiceSetup::GetRecognition()
-{
-	if(VR3.available())
-    {
-      for(int i = 0; i<27;i++)
-     	{
-       		 _z[i] = VR3.read();
-          	 delay(1); 
-    	 }
-
-    } 
-}
-
-void LG_VoiceSetup::StartRecognition(int _Vgroup) // Alterar o vetor de grupos com base no informado pelo usuário
-{
-	for(int _k=0;_k<8;_k++)
-  	{
-    	VR3.write(groups[_Vgroup][_k]);
-  	}
-}
-
-void LiquidGalaxyController::PinOut(int Command)
-{
-	if(_pinOut !=0)
-	{
-		switch(Command)
- 	 {
-    	case 1:
-   	 	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(800);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	break;
-    	case 2:
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(200);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(200);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(200);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	break;
-    	case 3:
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(500);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(500);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(500);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(500);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	delay(500);
-    	digitalWrite(_pinOut,!digitalRead(_pinOut));
-    	break;
-  	}
-  }
-}
-
 
 
 
