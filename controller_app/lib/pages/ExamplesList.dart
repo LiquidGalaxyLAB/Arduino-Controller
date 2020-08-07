@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 String dropdownValue = '';
 var _Continents = ['America','Africa','Europe','Oceania','Asia'];
 var select = '';
+var _page ='1';
 
 class Exampleslist extends StatefulWidget {
   static final tag = 'examples-list';
@@ -17,12 +18,9 @@ class Exampleslist extends StatefulWidget {
 }
 
 class _ExampleslistState extends State<Exampleslist> {
-  static final ExamplePages = [
-    FootballPage(),
-    RaccingPage(),
-    WordWondersPage()
-  ];
-  static var pageControl = ExamplePages[0];
+
+  var pageControl;
+
   @override
   Widget build(BuildContext context) {
     var appBar = AppBar(title: Text("Navigation Examples"));
@@ -39,24 +37,25 @@ class _ExampleslistState extends State<Exampleslist> {
             SizedBox(height: 10),
             Row(
               children: <Widget>[
-                Container(width: size.width*.025),
+                Container(width: size.width * .025),
                 Container(
-                  width: size.width*.3,
-                  height: size.height*.07,
+                  width: size.width * .3,
+                  height: size.height * .07,
                   child: SizedBox(
                     child: RaisedButton(
-                      onPressed: (){
+                      onPressed: () {
                         setState(() {
-                          select = _Continents[0];
-                          pageControl = ExamplePages[0];
+                          _page = '1';
+                          pageControl = futlist(select);
                         });
-                        //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                       },
                       child: Row(
                         children: <Widget>[
                           //SizedBox(width: 5),
                           Text("Football \nStadiums", style: TextStyle(
-                              color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -65,24 +64,24 @@ class _ExampleslistState extends State<Exampleslist> {
                     ),
                   ),
                 ),
-                Container(width: size.width*.025),
+                Container(width: size.width * .025),
                 Container(
-                  width: size.width*.3,
-                  height: size.height*.07,
+                  width: size.width * .3,
+                  height: size.height * .07,
                   child: SizedBox(
                     child: RaisedButton(
-                      onPressed: (){
+                      onPressed: () {
                         setState(() {
-                          select = _Continents[0];
-                          pageControl = ExamplePages[1];
+                          _page = '2';
+                          pageControl = RaccingPage(select);
                         });
-                       // Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                       },
                       child: Row(
                         children: <Widget>[
-                          //SizedBox(width: 5),
                           Text("Racing \nCircuits", style: TextStyle(
-                              color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -91,25 +90,26 @@ class _ExampleslistState extends State<Exampleslist> {
                     ),
                   ),
                 ),
-                Container(width: size.width*.025),
+                Container(width: size.width * .025),
                 Container(
-                  width: size.width*.3,
-                  height: size.height*.07,
+                  width: size.width * .3,
+                  height: size.height * .07,
                   child: SizedBox(
                     child: RaisedButton(
-                      onPressed: (){
+                      onPressed: () {
                         setState(() {
-                          pageControl = ExamplePages[2];
+                          //pageControl = ExamplePages[2];
+                          pageControl = WordWondersPage(select);
                           select = '';
+                          _page = '3';
                         });
-
-                       // Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                       },
                       child: Row(
                         children: <Widget>[
-                          //SizedBox(width: 5),
                           Text("Word \nWonders", style: TextStyle(
-                              color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -123,7 +123,7 @@ class _ExampleslistState extends State<Exampleslist> {
             Container(height: 10),
             Container(
                 width: size.width,
-                height: size.height*.07,
+                height: size.height * .07,
                 child: Padding(
                   padding: const EdgeInsets.all(1),
                   child: Row(
@@ -131,23 +131,23 @@ class _ExampleslistState extends State<Exampleslist> {
                     children: <Widget>[
                       Container(),
                       Text('Select a Continent', style: TextStyle(
-                          color: Colors.black,fontSize: 18) ),
+                          color: Colors.black, fontSize: 18)),
                       DropdownButton<String>(
                         hint: Text(select, style: TextStyle(
-                            color: Colors.black,fontSize: 20),
+                            color: Colors.black, fontSize: 20),
                         ),
                         items: _Continents.map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value, style: TextStyle(
-                                color: Colors.black,fontSize: 18),
+                                color: Colors.black, fontSize: 18),
                             ),
                           );
                         }).toList(),
                         onChanged: (String value) {
                           setState(() {
                             select = value;
-                            //pageControl = ExamplePages[2];
+                            pageControl = _pageController(select);
                           });
                           //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                         },
@@ -160,13 +160,15 @@ class _ExampleslistState extends State<Exampleslist> {
             Container(height: 10),
             Expanded(
               child: Container(
-                width: size.width*.96,
-                height: size.height*.5,
+                width: size.width * .96,
+                height: size.height * .5,
                 color: Colors.white,
                 child: LayoutBuilder(
-                    builder: (_,constraints){
-                      return  pageControl;
-                      //return pageControl;
+                    builder: (_, constraints) {
+                      if (pageControl == null) {
+                        return Container();
+                      }
+                      return pageControl;
                     }
                 ),
               ),
@@ -175,6 +177,17 @@ class _ExampleslistState extends State<Exampleslist> {
         ),
       ),
     );
+  }
 
+  _pageController(String selection) {
+    if (_page == '1') {
+      return futlist(selection);
+    }
+    if (_page == '2') {
+      return RaccingPage(selection);
+    }
+    if (_page == '3') {
+      return WordWondersPage(select);
+    }
   }
 }

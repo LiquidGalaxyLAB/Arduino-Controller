@@ -22,9 +22,6 @@ class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     ListPage.tag: (context) => ListPage(),
     KeyBoardPage.tag: (context) => KeyBoardPage(),
-    FootballPage.tag:(context) => FootballPage(),
-    RaccingPage.tag:(context) => RaccingPage(),
-    WordWondersPage.tag:(context) => WordWondersPage(),
     NetInfoPage.tag:(context) => NetInfoPage(),
     Exampleslist.tag:(context) => Exampleslist()
   };
