@@ -451,7 +451,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
   // Method to send message,
   // for turning the Bluetooth device on
   void _sendOnMessageToBluetooth() async {
-    connection.output.add(utf8.encode(variavel + "\r\n"));
+    connection.output.add(utf8.encode("/"+netIP+","+netSSID+","+netPASSWORD+"," + "\r\n"));
     await connection.output.allSent;
     show('Device Turned On');
     setState(() {
@@ -462,7 +462,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
   // Method to send message,
   // for turning the Bluetooth device off
   void _sendOffMessageToBluetooth() async {
-    connection.output.add(utf8.encode("0" + "\r\n"));
+    connection.output.add(utf8.encode("#"+valido + "\r\n"));
     await connection.output.allSent;
     show('Device Turned Off');
     setState(() {

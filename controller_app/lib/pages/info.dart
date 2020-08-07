@@ -115,7 +115,34 @@ class Info extends StatelessWidget {
                 ),
               ),
             ),
-            Container(height: 60),
+            Container(height:22),
+            Center(
+              child: Container(
+                width: size.width*.5,
+                height: size.height*.05,
+                color: Colors.green,
+                child: SizedBox(
+                  child: RaisedButton(
+                    onPressed: (){
+                      String URLYouTube = 'https://www.liquidgalaxy.eu/';
+                      _launchURL(URLYouTube);
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.ondemand_video,color: Colors.white,),
+                        SizedBox(width: 20),
+                        Text("Community", style: TextStyle(
+                            color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                    color: Colors.blue,
+                    elevation: 10,
+                  ),
+                ),
+              ),
+            ),
+            Container(height: 30),
             Row(
               children: <Widget>[
                 //Container(width: size.width*.05,),

@@ -4,8 +4,8 @@
 SoftwareSerial VR3(22,23);
 const char* ssid = "Ilana"; //add
 const char* password =  "32513296"; //add
-const uint16_t port = 8000; //add
 const char * host = "192.168.0.5"; //add
+const uint16_t port = 8000; //add
 WiFiClient client;
 //-------------------------------------------------- Voice Commands
 byte a[27];
@@ -46,6 +46,7 @@ int moviment, moviment2,moviment3 =0;
 int movJoy =1;
 int tourPin =15;
 int cicleTimeInit, cicleTimeEnd;
+int timeTour = 8;
 
 void setup() 
 {
@@ -85,7 +86,7 @@ delay(100);
 
 void loop() 
 {   
-    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(8);} 
+    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(timeTour);} 
     
     if(digitalRead(5))
     { while(digitalRead(5) == HIGH){} 

@@ -1,22 +1,28 @@
 import 'package:controllerapp/ExamplePages/Football.dart';
 import 'package:controllerapp/ExamplePages/RaccingCircuit.dart';
 import 'package:controllerapp/ExamplePages/WordWonders.dart';
+import 'package:controllerapp/pages/test.dart';
 import 'package:flutter/material.dart';
+
 
 String dropdownValue = '';
 var _Continents = ['America','Africa','Europe','Oceania','Asia'];
 var select = '';
 
-class ExamplesPage extends StatelessWidget {
-  static final tag = 'examples-page';
+class Exampleslist extends StatefulWidget {
+  static final tag = 'examples-list';
+  Exampleslist({Key key}):super(key:key);
+  @override
+  _ExampleslistState createState() => _ExampleslistState();
+}
+
+class _ExampleslistState extends State<Exampleslist> {
   static final ExamplePages = [
     FootballPage(),
     RaccingPage(),
     WordWondersPage()
   ];
-
   static var pageControl = ExamplePages[0];
-
   @override
   Widget build(BuildContext context) {
     var appBar = AppBar(title: Text("Navigation Examples"));
@@ -40,8 +46,11 @@ class ExamplesPage extends StatelessWidget {
                   child: SizedBox(
                     child: RaisedButton(
                       onPressed: (){
-                        pageControl = ExamplePages[0];
-                        Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
+                        setState(() {
+                          select = _Continents[0];
+                          pageControl = ExamplePages[0];
+                        });
+                        //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                       },
                       child: Row(
                         children: <Widget>[
@@ -63,8 +72,11 @@ class ExamplesPage extends StatelessWidget {
                   child: SizedBox(
                     child: RaisedButton(
                       onPressed: (){
-                        pageControl = ExamplePages[1];
-                        Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
+                        setState(() {
+                          select = _Continents[0];
+                          pageControl = ExamplePages[1];
+                        });
+                       // Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                       },
                       child: Row(
                         children: <Widget>[
@@ -86,9 +98,12 @@ class ExamplesPage extends StatelessWidget {
                   child: SizedBox(
                     child: RaisedButton(
                       onPressed: (){
-                        pageControl = ExamplePages[2];
-                        select = '';
-                        Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
+                        setState(() {
+                          pageControl = ExamplePages[2];
+                          select = '';
+                        });
+
+                       // Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                       },
                       child: Row(
                         children: <Widget>[
@@ -107,38 +122,40 @@ class ExamplesPage extends StatelessWidget {
             ),
             Container(height: 10),
             Container(
-              width: size.width,
-              height: size.height*.07,
-              child: Padding(
-                padding: const EdgeInsets.all(1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(),
-                    Text('Select a Continent', style: TextStyle(
-                        color: Colors.black,fontSize: 18),
-                    ),
-                     DropdownButton<String>(
-                       hint: Text(select, style: TextStyle(
-                           color: Colors.black,fontSize: 20),
-                       ),
-                      items: _Continents.map((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value, style: TextStyle(
-                              color: Colors.black,fontSize: 18),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (String value) {
-                        select = value;
-                        Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
-                      },
-                    ),
-                    Container()
-                  ],
-                ),
-              )
+                width: size.width,
+                height: size.height*.07,
+                child: Padding(
+                  padding: const EdgeInsets.all(1),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(),
+                      Text('Select a Continent', style: TextStyle(
+                          color: Colors.black,fontSize: 18) ),
+                      DropdownButton<String>(
+                        hint: Text(select, style: TextStyle(
+                            color: Colors.black,fontSize: 20),
+                        ),
+                        items: _Continents.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value, style: TextStyle(
+                                color: Colors.black,fontSize: 18),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (String value) {
+                          setState(() {
+                            select = value;
+                            //pageControl = ExamplePages[2];
+                          });
+                          //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
+                        },
+                      ),
+                      Container()
+                    ],
+                  ),
+                )
             ),
             Container(height: 10),
             Expanded(
@@ -147,11 +164,12 @@ class ExamplesPage extends StatelessWidget {
                 height: size.height*.5,
                 color: Colors.white,
                 child: LayoutBuilder(
-                  builder: (_,constraints){
-                    return pageControl;
-                  }
+                    builder: (_,constraints){
+                      return  pageControl;
+                      //return pageControl;
+                    }
+                ),
               ),
-            ),
             ),
           ],
         ),

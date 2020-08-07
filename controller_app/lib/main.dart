@@ -1,16 +1,17 @@
 import 'package:controllerapp/ExamplePages/Football.dart';
 import 'package:controllerapp/ExamplePages/RaccingCircuit.dart';
 import 'package:controllerapp/ExamplePages/WordWonders.dart';
-import 'package:controllerapp/pages/NetworkInfo.dart';
+import 'package:controllerapp/pages/ExamplesList.dart';
+import 'package:controllerapp/pages/NetInfo.dart';
 import 'package:controllerapp/pages/info.dart';
 import 'package:controllerapp/pages/logos.dart';
+import 'package:controllerapp/pages/test.dart';
 import 'package:flutter/material.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import 'BluetoothPage.dart';
 import 'KeyBoard.dart';
-import 'pages/ExamplesPage.dart';
 import 'pages/list.dart';
 
 void main() {
@@ -21,10 +22,11 @@ class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     ListPage.tag: (context) => ListPage(),
     KeyBoardPage.tag: (context) => KeyBoardPage(),
-    ExamplesPage.tag:(context) => ExamplesPage(),
     FootballPage.tag:(context) => FootballPage(),
     RaccingPage.tag:(context) => RaccingPage(),
-    WordWondersPage.tag:(context) => WordWondersPage()
+    WordWondersPage.tag:(context) => WordWondersPage(),
+    NetInfoPage.tag:(context) => NetInfoPage(),
+    Exampleslist.tag:(context) => Exampleslist()
   };
 
   // This widget is the root of your application.
@@ -44,6 +46,10 @@ class MyApp extends StatelessWidget {
 }
 
 String variavel = "{-122.485046,37.820047,3000},{78.042202,27.172969,1500},{-43.210317,-22.951838,400},{-88.567935,20.683510,600},{12.492135,41.890079,600},{-72.545224,-13.163820,600},{35.441919,30.328456,600},{2.294473,48.857730,1000},{-0.124419,51.500769,500},{-74.044535,40.689437,500},{37.623446,55.752362,500},{-73.985359,40.748360,500},{-51.049260,0.030478,500},{31.132695,29.976603,500},{0.626502,41.617540,600},{116.562771,40.435456,500}";
+String valido = "-122.485046-,37.820047-,3000,*78.042202-,27.172969-,1500,*-43.210317-,-22.951838-,400,*-88.567935-,20.683510-,600,*12.492135-,41.890079-,600,*-72.545224-,-13.163820-,600,*35.441919-,30.328456-,600,*2.294473-,48.857730-,1000,*-0.124419-,51.500769-,500,*-74.044535-,40.689437-,500,*37.623446-,55.752362-,500,*-73.985359-,40.748360-,500,*-51.049260-,0.030478-,500,*31.132695-,29.976603-,500,*0.626502-,41.617540-,600,*116.562771-,40.435456-,500,";
+String netIP = "192.168.0.5";
+String netSSID = "ilana";
+String netPASSWORD ="32513296";
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -178,7 +184,8 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            Navigator.of(context).pushNamed(ExamplesPage.tag);
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Exampleslist()));
+                            //Navigator.of(context).pushNamed(ExamplesPage.tag);
                             closeDrawer();
                           },
                           leading: Icon(Icons.add_to_photos),
@@ -190,7 +197,7 @@ class CustomDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>NetworkInfo()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>NetInfoPage()));
                             closeDrawer();
                            //debugPrint("Settings");
                           },
@@ -217,8 +224,6 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
           ),
-
-
         ],
       ),
     );
