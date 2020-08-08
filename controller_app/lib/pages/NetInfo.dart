@@ -28,7 +28,7 @@ class _NetInfoPageState extends State<NetInfoPage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Network Info"),
+        title: Text("Network Information"),
       ),
       body: Container(
           decoration: BoxDecoration(
@@ -49,7 +49,9 @@ class _NetInfoPageState extends State<NetInfoPage> {
                   width: size.width*.8,
                   //color: Colors.green,
                   child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.blue,width: 3),
+                        borderRadius: BorderRadius.circular(20)),
                     child: Container(
                       child: Column(
                         children: <Widget>[
@@ -124,6 +126,9 @@ class _NetInfoPageState extends State<NetInfoPage> {
                         netIP = _LGIP.text;
                         netSSID = _SSID.text;
                         netPASSWORD = _PASSWORD.text;
+                        setState(() {
+                          controlBottonSend = 'NetInfo';
+                        });
                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BluetoothPage()));
                       }
                   )

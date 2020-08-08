@@ -129,7 +129,7 @@ class Info extends StatelessWidget {
                     },
                     child: Row(
                       children: <Widget>[
-                        Icon(Icons.ondemand_video,color: Colors.white,),
+                        Icon(Icons.people_outline,color: Colors.white,),
                         SizedBox(width: 20),
                         Text("Community", style: TextStyle(
                             color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),

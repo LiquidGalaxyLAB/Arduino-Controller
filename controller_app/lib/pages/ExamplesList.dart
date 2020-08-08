@@ -1,14 +1,17 @@
 import 'package:controllerapp/ExamplePages/Football.dart';
 import 'package:controllerapp/ExamplePages/RaccingCircuit.dart';
 import 'package:controllerapp/ExamplePages/WordWonders.dart';
-import 'package:controllerapp/pages/test.dart';
 import 'package:flutter/material.dart';
+
+import '../BluetoothPage.dart';
 
 
 String dropdownValue = '';
 var _Continents = ['America','Africa','Europe','Oceania','Asia'];
 var select = '';
 var _page ='1';
+var colorController = Colors.black87;
+String StringToSend;
 
 class Exampleslist extends StatefulWidget {
   static final tag = 'examples-list';
@@ -46,6 +49,7 @@ class _ExampleslistState extends State<Exampleslist> {
                       onPressed: () {
                         setState(() {
                           _page = '1';
+                          colorController = Colors.green;
                           pageControl = futlist(select);
                         });
                       },
@@ -72,7 +76,9 @@ class _ExampleslistState extends State<Exampleslist> {
                     child: RaisedButton(
                       onPressed: () {
                         setState(() {
+                          select = _Continents[0];
                           _page = '2';
+                          colorController = Colors.blue;
                           pageControl = RaccingPage(select);
                         });
                       },
@@ -101,6 +107,7 @@ class _ExampleslistState extends State<Exampleslist> {
                           //pageControl = ExamplePages[2];
                           pageControl = WordWondersPage(select);
                           select = '';
+                          colorController = Colors.red;
                           _page = '3';
                         });
                       },
@@ -152,6 +159,21 @@ class _ExampleslistState extends State<Exampleslist> {
                           //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
                         },
                       ),
+                      Container(
+                        child: RaisedButton(
+                            child: Text("Save\nto send", textAlign: TextAlign.center,style: TextStyle(
+                                color: Colors.white,fontSize: 10,fontWeight: FontWeight.w700),
+                            ),
+                            color: colorController,
+                            onPressed: (){
+                              _makeString();
+                              setState(() {
+                                controlBottonSend = 'SendList';
+                              });
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BluetoothPage()));
+                            }
+                        )
+                      ),
                       Container()
                     ],
                   ),
@@ -166,7 +188,27 @@ class _ExampleslistState extends State<Exampleslist> {
                 child: LayoutBuilder(
                     builder: (_, constraints) {
                       if (pageControl == null) {
-                        return Container();
+                        return Container(
+                          color: Colors.white,
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                //color: Colors.yellow,
+                                height: size.height*.5,
+                                width: size.width*.95,
+                                child: Card(
+                                  color: Colors.blue,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
+                                    child: Center(
+                                      child: Text("Hello! \n Select a option", textAlign: TextAlign.center,style: TextStyle(
+                                          color: Colors.black87,fontSize: 28,fontWeight: FontWeight.w700),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       }
                       return pageControl;
                     }
@@ -190,4 +232,80 @@ class _ExampleslistState extends State<Exampleslist> {
       return WordWondersPage(select);
     }
   }
+}
+
+void _makeString() {
+  List<String> _listSelected;
+
+  if(_page == '3'){
+     _listSelected = ListWord [0];
+  }
+  if(_page == '2' && select!= null){
+    switch(select)
+    {
+      case 'America':
+        {
+           _listSelected = raccingCircuits [0];
+        }
+        break;
+      case 'Africa':
+        {
+           _listSelected = raccingCircuits [1];
+        }
+        break;
+      case 'Europe':
+        {
+           _listSelected = raccingCircuits [2];
+        }
+        break;
+      case 'Oceania':
+        {
+          _listSelected = raccingCircuits [3];
+        }
+        break;
+      case 'Asia':
+        {
+          _listSelected = raccingCircuits [4];
+        }
+        break;
+    }
+  }
+  if(_page == '1' && select!= null){
+    switch(select)
+    {
+      case 'America':
+        {
+          _listSelected = footStadiums[0];
+        }
+        break;
+      case 'Africa':
+        {
+          _listSelected = footStadiums[1];
+        }
+        break;
+      case 'Europe':
+        {
+          _listSelected = footStadiums[2];
+        }
+        break;
+      case 'Oceania':
+        {
+          _listSelected = footStadiums[3];
+        }
+        break;
+      case 'Asia':
+        {
+          _listSelected = footStadiums[4];
+        }
+        break;
+    }
+  }
+  StringToSend = "";
+  for(var i = 0; i<(_listSelected.length);i++)
+    {
+      String pass =  _listSelected[i];
+      StringToSend = StringToSend + pass;
+    }
+
+  print(StringToSend);
 }

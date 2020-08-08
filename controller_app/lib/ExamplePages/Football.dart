@@ -23,6 +23,8 @@ final List<String> _coordOceania= <String>['144.9834493,-37.8199669,813.5890022'
 final List<String> _stadiumAsia= <String>['Seoul Olympic Stadium/ Seoul, South Korea','Sardar Patel Stadium/ Ahmedabad, India','Bukit Jalil National Stadium/ Kuala Lumpur, Malaysia','Salt Lake Stadium/ Kolkata, India','Shah Alam Stadium/ Shah Alam, Malaysia','New National Stadium/ Tokyo, Japan','Guangdong Olympic Stadium/ Guangzhou, China','Beijing National Stadium/ Beijing, China','Hangzhou Sports Park Stadium/ Hangzhou, China','Palaran Stadium/ Samarinda, Indonesia','Gelora Bung Karno Main Stadium/ Jakarta, Indonesia','Seoul World Cup Stadium/ Seoul, South Korea','International Stadium Yokohama/ Yokohama, Japan','Workers Stadium/ Beijing, China','Saitama Stadium 2002/ Saitama, Japan','Shenyang Olympic Sports Centre Stadium/ Shenyang, China'];
 final List<String> _coordAsia= <String>['127.0727661,37.5158554,817.2554327','72.5643479,23.0421763,962.9489775','101.69134,3.0546349,1054.86146','88.4090443,22.5690538,966.6726261','101.5454093,3.0824395,1054.830733','139.7145468,35.6778952,838.9271391','113.4031961,23.1375063,544.6531423','116.390343,39.990029,786.7837249','120.225183,30.2314094,822.207166','117.1315495,-0.5863952,1056.480364','106.8017969,-6.2185701,1049.584634','126.8972774,37.5682588,816.6252554','139.6063937,35.5099461,840.8650564','116.4408471,39.9300533,407.5654298','139.7175976,35.9031054,836.3172279','123.458851,41.739441,764.3816812'];
 
+List<List> footStadiums = [_coordAmerica,_coordAfrica,_coordEurope,_coordOceania,_coordAsia];
+
 var _controllCont = "";
 var _controllLenth;
 var _controllTitle;

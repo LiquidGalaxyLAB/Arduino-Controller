@@ -22,6 +22,7 @@ final List<String> _coordRaccingOceania = <String>['138.6196917,-34.9309643,847.
 final List<String> _raccingAsia = <String>['Jinjiang District, Chengdu','Chaoyang, Beijing','Mevalurkuppam, India','Motegi, Japan','Hita, Oita, Japan','Oyama, Japan','Rosario, Philippines','Sendai, Japan','Marina Bay, Singapur','Doha, Qatar','Abu Dhabi','Yongin, South Korea','Buriram Buri Ram, Thailand','Pasir Gudang, Malaysia','Wangchan, Thailand','Sepang, Malaysia'];
 final List<String> _coordRaccingAsia = <String>['104.121501,30.585175,894.3792123','116.5631629,40.018022,786.43073','79.987432,12.99972,1026.301382','140.2253966,36.531954,828.9617548','130.97351,33.039077,868.5287989','138.9272935,35.3722685,842.4483015','121.2776576,13.8214685,1022.388652','140.6299259,38.2916815,807.8575263','103.8639097,1.2914319,1056.241794','51.4528912,25.4862831,942.6021872','54.6055067,24.4699413,951.2872923','127.207591,37.2960689,819.8911501','103.0849254,14.9579714,1016.595384','103.9077126,1.4805879,1056.147316','99.706249,12.942246,1026.566332','101.7317775,2.7594144,1055.170563'];
 
+List<List> raccingCircuits =[_coordRaccingAmerica,_coordRaccingAfrica,_coordRaccingEurope,_coordRaccingOceania,_coordRaccingAsia];
 
 var _controllCont = "";
 var _controllLenth;

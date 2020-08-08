@@ -22,6 +22,8 @@ class BluetoothApp extends StatefulWidget {
   _BluetoothAppState createState() => _BluetoothAppState();
 }
 
+var controlBottonSend = '';
+
 class _BluetoothAppState extends State<BluetoothApp> {
   // Initializing the Bluetooth connection state to be unknown
   BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
@@ -259,60 +261,14 @@ class _BluetoothAppState extends State<BluetoothApp> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          side: new BorderSide(
-                            color: _deviceState == 0
-                                ? colors['neutralBorderColor']
-                                : _deviceState == 1
-                                ? colors['onBorderColor']
-                                : colors['offBorderColor'],
-                            width: 3,
-                          ),
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
-                        elevation: _deviceState == 0 ? 4 : 0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  "DEVICE 1",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: _deviceState == 0
-                                        ? colors['neutralTextColor']
-                                        : _deviceState == 1
-                                        ? colors['onTextColor']
-                                        : colors['offTextColor'],
-                                  ),
-                                ),
-                              ),
-                              FlatButton(
-                                onPressed: _connected
-                                    ? _sendOnMessageToBluetooth
-                                    : null,
-                                child: Text("ON"),
-                              ),
-                              FlatButton(
-                                onPressed: _connected
-                                    ? _sendOffMessageToBluetooth
-                                    : null,
-                                child: Text("OFF"),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    Container(height: 20,),
+                    Container(
+                      width: size.width*.9,
+                      child: _dataToSend(),
+                    )
                   ],
                 ),
-                Container(
-                  color: Colors.blue,
-                ),
+                Container(color: Colors.blue),
               ],
             ),
             Expanded(
@@ -450,22 +406,24 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   // Method to send message,
   // for turning the Bluetooth device on
-  void _sendOnMessageToBluetooth() async {
+  void _sendNetInfo() async {
     connection.output.add(utf8.encode("/"+netIP+","+netSSID+","+netPASSWORD+"," + "\r\n"));
     await connection.output.allSent;
-    show('Device Turned On');
+    //show('Device Turned On');
     setState(() {
+      controlBottonSend = '';
       _deviceState = 1; // device on
     });
   }
 
   // Method to send message,
   // for turning the Bluetooth device off
-  void _sendOffMessageToBluetooth() async {
+  void _sendPlaceString() async {
     connection.output.add(utf8.encode("#"+valido + "\r\n"));
     await connection.output.allSent;
-    show('Device Turned Off');
+    //show('Device Turned Off');
     setState(() {
+      controlBottonSend = '';
       _deviceState = -1; // device off
     });
   }
@@ -485,5 +443,71 @@ class _BluetoothAppState extends State<BluetoothApp> {
         duration: duration,
       ),
     );
+  }
+
+  _dataToSend() {
+    if(controlBottonSend == ''){
+      return Container( height:50,color: Colors.red,);
+    }else
+    if(controlBottonSend == 'NetInfo'){
+      return Card(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.red,width: 3),
+            borderRadius: BorderRadius.circular(4)),
+        elevation: _deviceState == 0 ? 4 : 0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  "Send Net Information",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: colors['neutralTextColor'],
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: _connected
+                    ? _sendNetInfo
+                    : null,
+                child: Text("Send"),
+              ),
+            ],
+          ),
+        ),
+      );
+    }else
+    if(controlBottonSend == 'SendList'){
+      return Card(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.blue,width: 3),
+            borderRadius: BorderRadius.circular(4)),
+        elevation: _deviceState == 0 ? 4 : 0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  "Send List",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: colors['neutralTextColor'],
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: _connected
+                    ? _sendPlaceString
+                    : null,
+                child: Text("Send"),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }
