@@ -1,7 +1,9 @@
 #!/usr/bin/python
 import serial
+import keyboard
 
 from pynput.keyboard import Key, Controller as KeyboardController
+
 keyb = KeyboardController()
 
 comport = serial.Serial('/dev/ttyUSB0', 9600)
@@ -56,17 +58,22 @@ def Position_Controller(dataRec):
         keyb.release(Key.right)
         keyb.release(Key.left)
         keyb.release(Key.up)
-        keyb.release(Key.page_down)
         keyb.release(Key.page_up)
+        keyb.release(Key.page_down)
     else:
+
         f = open("/tmp/query.txt", "w")
         f.write(data)
         f.close()
 
+  #  data = 0
+
+
 if __name__ == "__main__":
 
     while True:
-        valor = comport.readline().decode('UTF-8')
+        valor = comport.readline().decode() #'UTF-8')
+#        print(valor)
         Position_Controller(valor)
 
 # comport.close()

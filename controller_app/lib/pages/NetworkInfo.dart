@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:controllerapp/main.dart';
 
-import '../BluetoothPage.dart';
+import 'BluetoothPage.dart';
 
 class NetInfoPage extends StatefulWidget {
   static final tag = 'netinfo-page';

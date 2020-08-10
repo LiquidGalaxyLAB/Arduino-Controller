@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
+import 'ExamplesList.dart';
+
 class BluetoothPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -419,7 +421,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
   // Method to send message,
   // for turning the Bluetooth device off
   void _sendPlaceString() async {
-    connection.output.add(utf8.encode("#"+valido + "\r\n"));
+    connection.output.add(utf8.encode("#"+StringToSend+"\r\n"));
     await connection.output.allSent;
     //show('Device Turned Off');
     setState(() {
@@ -447,7 +449,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
 
   _dataToSend() {
     if(controlBottonSend == ''){
-      return Container( height:50,color: Colors.red,);
+      return Container( height:50,);
     }else
     if(controlBottonSend == 'NetInfo'){
       return Card(
@@ -464,7 +466,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
                   "Send Net Information",
                   style: TextStyle(
                     fontSize: 20,
-                    color: colors['neutralTextColor'],
+                    color: Colors.red,//colors['neutralTextColor'],
                   ),
                 ),
               ),
