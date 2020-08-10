@@ -111,7 +111,7 @@ class _RaccingPageState extends State<RaccingPage> {
                 return Card(
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.blue,
                       child: Text("$index"),
                       foregroundColor: Colors.white,
                     ),

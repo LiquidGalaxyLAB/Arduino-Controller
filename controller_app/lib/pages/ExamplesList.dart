@@ -3,7 +3,7 @@ import 'package:controllerapp/ExamplePages/RaccingCircuit.dart';
 import 'package:controllerapp/ExamplePages/WordWonders.dart';
 import 'package:flutter/material.dart';
 
-import '../BluetoothPage.dart';
+import 'Connect.dart';
 
 
 String dropdownValue = '';
@@ -48,6 +48,7 @@ class _ExampleslistState extends State<Exampleslist> {
                     child: RaisedButton(
                       onPressed: () {
                         setState(() {
+                          select = _Continents[0];
                           _page = '1';
                           colorController = Colors.green;
                           pageControl = futlist(select);
@@ -133,50 +134,7 @@ class _ExampleslistState extends State<Exampleslist> {
                 height: size.height * .07,
                 child: Padding(
                   padding: const EdgeInsets.all(1),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(),
-                      Text('Select a Continent', style: TextStyle(
-                          color: Colors.black, fontSize: 18)),
-                      DropdownButton<String>(
-                        hint: Text(select, style: TextStyle(
-                            color: Colors.black, fontSize: 20),
-                        ),
-                        items: _Continents.map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value, style: TextStyle(
-                                color: Colors.black, fontSize: 18),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (String value) {
-                          setState(() {
-                            select = value;
-                            pageControl = _pageController(select);
-                          });
-                          //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
-                        },
-                      ),
-                      Container(
-                        child: RaisedButton(
-                            child: Text("Save\nto send", textAlign: TextAlign.center,style: TextStyle(
-                                color: Colors.white,fontSize: 10,fontWeight: FontWeight.w700),
-                            ),
-                            color: colorController,
-                            onPressed: (){
-                              _makeString();
-                              setState(() {
-                                controlBottonSend = 'SendList';
-                              });
-                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BluetoothPage()));
-                            }
-                        )
-                      ),
-                      Container()
-                    ],
-                  ),
+                  child: _SendController()
                 )
             ),
             Container(height: 10),
@@ -193,7 +151,6 @@ class _ExampleslistState extends State<Exampleslist> {
                           child: Column(
                             children: <Widget>[
                               Container(
-                                //color: Colors.yellow,
                                 height: size.height*.5,
                                 width: size.width*.95,
                                 child: Card(
@@ -230,6 +187,58 @@ class _ExampleslistState extends State<Exampleslist> {
     }
     if (_page == '3') {
       return WordWondersPage(select);
+    }
+  }
+
+  _SendController() {
+    if(pageControl == null){
+      return Container();
+    }
+    else{
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(),
+          Text('Select a Continent', style: TextStyle(
+              color: Colors.black, fontSize: 18)),
+          DropdownButton<String>(
+            hint: Text(select, style: TextStyle(
+                color: Colors.black, fontSize: 20),
+            ),
+            items: _Continents.map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value, style: TextStyle(
+                    color: Colors.black, fontSize: 18),
+                ),
+              );
+            }).toList(),
+            onChanged: (String value) {
+              setState(() {
+                select = value;
+                pageControl = _pageController(select);
+              });
+              //Navigator.of(context).pushReplacementNamed(ExamplesPage.tag);
+            },
+          ),
+          Container(
+              child: RaisedButton(
+                  child: Text("Save\nto send", textAlign: TextAlign.center,style: TextStyle(
+                      color: Colors.white,fontSize: 10,fontWeight: FontWeight.w700),
+                  ),
+                  color: colorController,
+                  onPressed: (){
+                    _makeString();
+                    setState(() {
+                      controlBottonSend = 'SendList';
+                    });
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BluetoothPage()));
+                  }
+              )
+          ),
+          Container()
+        ],
+      );
     }
   }
 }
@@ -304,7 +313,13 @@ void _makeString() {
   for(var i = 0; i<(_listSelected.length);i++)
     {
       String pass =  _listSelected[i];
-      StringToSend = StringToSend + pass;
+      if(i < (_listSelected.length - 1)){
+        StringToSend = StringToSend + pass + ",*";
+      }
+      else{
+        StringToSend = StringToSend + pass + ",";
+      }
+
     }
 
   print(StringToSend);

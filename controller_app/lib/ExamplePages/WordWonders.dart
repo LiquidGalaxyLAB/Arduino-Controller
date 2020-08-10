@@ -28,7 +28,7 @@ class _WordWondersPageState extends State<WordWondersPage> {
                 return Card(
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.red,
                       child: Text("$index"),
                       foregroundColor: Colors.white,
                     ),
