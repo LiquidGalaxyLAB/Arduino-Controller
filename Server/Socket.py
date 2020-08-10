@@ -1,10 +1,12 @@
+#!/usr/bin/python
 import socket
+
 from pynput.keyboard import Key, Controller as KeyboardController
 keyb = KeyboardController()
 
 s = socket.socket()
 s.bind(('0.0.0.0', 8000))
-s.listen(0)
+s.listen(2)
 
 def Position_Controller(dataRec):
     data = dataRec
@@ -57,11 +59,15 @@ def Position_Controller(dataRec):
         keyb.release(Key.up)
         keyb.release(Key.page_up)
         keyb.release(Key.page_down)
+    else:
+        f = open("/tmp/query.txt", "w")
+        f.write(data)
+        f.close()
 
 while True:
     client, addr = s.accept()
     while True:
-        content = client.recv(32).decode()
+        content = client.recv(128).decode()
         if len(content) == 0:
             break
         else:
