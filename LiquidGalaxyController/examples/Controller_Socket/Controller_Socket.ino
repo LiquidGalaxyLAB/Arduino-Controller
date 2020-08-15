@@ -53,10 +53,13 @@ String Coordnates[16][3]={
   {"-72.545224","-13.163820","600"},{"35.441919","30.328456","600"},{"2.294473","48.857730","1000"},{"-0.124419","51.500769","500"},{"-74.044535","40.689437","500"},
   {"37.623446","55.752362","500"},{"-73.985359","40.748360","500"},{"-51.049260","0.030478","500"},{"31.132695","29.976603","500"},{"0.626502","41.617540","600"},{"116.562771","40.435456","500"}
   };
+
+String CoordOrbit[3];
 //--------------------------------------------------------------------------------------------------------------------Control variables
 int moviment, moviment2,moviment3 =0;
 int movJoy =1;
-int tourPin = 15;
+int tourPin = 2;//15;
+int OrbitPin = 15;//2;
 int changeVoiceGroup = 5;
 int TimeTour = 10;
 int cicleTimeInit, cicleTimeEnd;
@@ -71,6 +74,7 @@ void setup()
   SerialBT.begin("LG Controller"); //Bluetooth device name
   
   VR3.begin(9600);
+ // pinMode(OrbitPin, INPUT);
   pinMode(tourPin, INPUT);
   pinMode(changeVoiceGroup, INPUT);
   pinMode(_pinOut,OUTPUT); 
@@ -101,10 +105,11 @@ void loop()
         caracter = SerialBT.read();
         if(caracter == '/') ReadNetInfo();
         if(caracter == '#') ReadPlace();
-        if(caracter == '@') ReadTimeTour();
+        if(caracter == '&') ReadTimeTour();
       }
    //----------------------------------------------------------------------
-    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(TimeTour);} // Start and stop the tour
+    if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} MakeOrbit();}
+    //if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(TimeTour);} // Start and stop the tour
    //------------------------------------------------------------------------------------------------------------------------------------------
     if(digitalRead(changeVoiceGroup))
     { while(digitalRead(changeVoiceGroup) == HIGH){}  // Change the voice group after press the button
@@ -272,6 +277,9 @@ void LGMove(int Command)
 //-----------------------------------------------------------------------------------This function is responsable for building the simple kml
 String MakeKML(String longitude, String latitude, String range)
 {
+  CoordOrbit[0] = longitude;  
+  CoordOrbit[1] = latitude; 
+  CoordOrbit[2]= range;
   String kml ="flytoview=<LookAt><longitude>";
   kml += longitude;
   kml += "</longitude><latitude>";
@@ -279,7 +287,40 @@ String MakeKML(String longitude, String latitude, String range)
   kml += "</latitude><range>";
   kml += range;
   kml += "</range></LookAt>";
-  return kml; 
+  return kml;
+}
+//------------------------------------------------------------------
+void MakeOrbit()
+{
+  for(int j =0 ;j<40;j++)
+  {
+    JoysticAnalyser(3, 'B');
+  }
+  LGMove(0);
+  for(int j =0 ;j<360;j++)
+  {
+    JoysticAnalyser(3, 'R');
+  }
+  LGMove(0);
+  /*String kmlOrbit = "";
+  String kml ="flytoview=<LookAt><longitude>";
+  kml += CoordOrbit[0];
+  kml += "</longitude><latitude>";
+  kml +=CoordOrbit[1] ;
+  kml += "</latitude><range>";
+  kml += CoordOrbit[2];
+  kml += "</range><heading>";
+
+ //for(int g =0; g<180; g+=5)
+ // {
+    kmlOrbit = kml;
+    kmlOrbit += "40";// String(g);
+    kmlOrbit += "</heading></LookAt>";
+
+    if (client.connect(host, port)){ client.print(kmlOrbit);}
+    Serial.println(kmlOrbit);
+ // }
+  client.stop();*/
 }
 //-------------------------------------------------------This function is responsable for selecting the state of the joystick controller and select the correct command 
 void JoysticAnalyser(int State, char Position)

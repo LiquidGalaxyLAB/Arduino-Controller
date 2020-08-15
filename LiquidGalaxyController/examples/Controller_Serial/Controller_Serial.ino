@@ -148,7 +148,7 @@ String MakeCompleteKML(String longitude, String latitude,String altitude, String
   kml += longitude;
   kml += "</longitude><latitude>";
   kml +=latitude ;
-  kml += "</latitude><altitude>700";
+  kml += "</latitude><altitude>";
   kml +=altitude ;
   kml += "</altitude><heading>90</heading><tilt>45</tilt><range>";
   kml += range;
