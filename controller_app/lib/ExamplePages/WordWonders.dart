@@ -25,11 +25,12 @@ class _WordWondersPageState extends State<WordWondersPage> {
               padding: const EdgeInsets.all(5),
               itemCount:_coordinates.length,
               itemBuilder: (BuildContext context, int index){
+                var te = index +1;
                 return Card(
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.red,
-                      child: Text("$index"),
+                      child: Text("$te"),
                       foregroundColor: Colors.white,
                     ),
                     title: Text(_placeName[index]),

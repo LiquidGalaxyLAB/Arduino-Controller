@@ -322,5 +322,5 @@ void _makeString() {
 
     }
 
-  print(StringToSend);
+  //print(StringToSend);
 }

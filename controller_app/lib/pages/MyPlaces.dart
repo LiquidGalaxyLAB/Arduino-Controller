@@ -1,6 +1,4 @@
 import 'dart:ui';
-import 'package:controllerapp/main.dart';
-import 'package:controllerapp/widgets/HomeList.dart';
 import 'package:controllerapp/widgets/list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +21,7 @@ class _MyPlacesState extends State<MyPlaces> {
 
   @override
   Widget build(BuildContext context) {
-    var appBar = AppBar(title: Text("KeyBoard Places"));
+    var appBar = AppBar(title: Text("My Places"));
     var size = MediaQuery.of(context).size;
     return Scaffold(
       key: UniqueKey(),
@@ -96,7 +94,9 @@ class _MyPlacesState extends State<MyPlaces> {
                                             child: Text('Add'),
                                             onPressed: (){
                                               if(_formNameKey.currentState.validate()) {
-                                                ListWord.add(<List>[]);
+                                                ListWord.add(<List>[<String>[],<String>[]]);
+                                                //ListWord.add(<List>[<String>['No list'],<String>['No list']],);
+                                              //ListWord.add(<List>[]);
                                                 ListWordName.add(_c.text);
                                                 _c.clear();
                                                 Navigator.of(ctx).pop();
@@ -128,6 +128,7 @@ class _MyPlacesState extends State<MyPlaces> {
                 child: ListView.builder(
                   itemCount: ListWordName.length,
                   itemBuilder: (context, index){
+                    var te = index +1;
                     return Card(
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.blue,width: .5),
@@ -138,7 +139,7 @@ class _MyPlacesState extends State<MyPlaces> {
                         child: ListTile(
                           leading: CircleAvatar(
                             backgroundColor: Colors.blue,
-                            child: Text("$index"),
+                            child: Text("$te"),
                             foregroundColor: Colors.white,
                           ),
                           title: Text(ListWordName[index]),
@@ -187,8 +188,7 @@ class _MyPlacesState extends State<MyPlaces> {
                                                 ListWordName.insert(index, _c.text);
                                                 Navigator.of(ctx).pop();
                                                 _c.clear();
-                                              }
-                                            }
+                                              }}
                                         )
                                       ],
                                     ),
@@ -199,9 +199,9 @@ class _MyPlacesState extends State<MyPlaces> {
                         ),
                         secondaryActions: <Widget>[
                           IconSlideAction(
-                            caption: 'Add Places',
+                            caption: 'Places',
                             color: Colors.blue,
-                            icon: Icons.add_circle_outline,
+                            icon: Icons.place,
                             onTap: () {
                               indexcontrol = index;
                               Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ListPage()));
@@ -232,7 +232,7 @@ class _MyPlacesState extends State<MyPlaces> {
                                           child: Text('Delete'),
                                           onPressed: (){
                                             ListWordName.removeAt(index);
-                                            ListWord.remove(index);
+                                            ListWord.removeAt(index);
                                             Navigator.of(context).pop();
                                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => MyPlaces()));
                                           },

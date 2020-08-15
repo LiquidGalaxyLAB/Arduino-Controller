@@ -5,8 +5,11 @@ import 'package:controllerapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:controllerapp/widgets/list.dart';
 
 import 'ExamplesList.dart';
+import 'NetworkInfo.dart';
+import 'TourTime.dart';
 
 class BluetoothPage extends StatelessWidget {
   @override
@@ -411,7 +414,6 @@ class _BluetoothAppState extends State<BluetoothApp> {
   void _sendNetInfo() async {
     connection.output.add(utf8.encode("/"+netIP+","+netSSID+","+netPASSWORD+"," + "\r\n"));
     await connection.output.allSent;
-    //show('Device Turned On');
     setState(() {
       controlBottonSend = '';
       _deviceState = 1; // device on
@@ -423,7 +425,22 @@ class _BluetoothAppState extends State<BluetoothApp> {
   void _sendPlaceString() async {
     connection.output.add(utf8.encode("#"+StringToSend+"\r\n"));
     await connection.output.allSent;
-    //show('Device Turned Off');
+    setState(() {
+      controlBottonSend = '';
+      _deviceState = -1; // device off
+    });
+  }
+  void _sendTime() async {
+    connection.output.add(utf8.encode("&"+time+","+"\r\n"));
+    await connection.output.allSent;
+    setState(() {
+      controlBottonSend = '';
+      _deviceState = -1; // device off
+    });
+  }
+  void _sendNewList() async {
+    connection.output.add(utf8.encode("#"+NewStringToSend+"\r\n"));
+    await connection.output.allSent;
     setState(() {
       controlBottonSend = '';
       _deviceState = -1; // device off
@@ -503,6 +520,66 @@ class _BluetoothAppState extends State<BluetoothApp> {
               FlatButton(
                 onPressed: _connected
                     ? _sendPlaceString
+                    : null,
+                child: Text("Send"),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    if(controlBottonSend == 'SendNewList'){
+      return Card(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.deepOrange,width: 3),
+            borderRadius: BorderRadius.circular(4)),
+        elevation: _deviceState == 0 ? 4 : 0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  "Send my list",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.deepOrange,//colors['neutralTextColor'],
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: _connected
+                    ? _sendNewList
+                    : null,
+                child: Text("Send"),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    if(controlBottonSend == 'Time'){
+      return Card(
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.green,width: 3),
+            borderRadius: BorderRadius.circular(4)),
+        elevation: _deviceState == 0 ? 4 : 0,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  "Send Time",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color:Colors.green,// colors['neutralTextColor'],
+                  ),
+                ),
+              ),
+              FlatButton(
+                onPressed: _connected
+                    ? _sendTime
                     : null,
                 child: Text("Send"),
               ),

@@ -108,11 +108,12 @@ class _RaccingPageState extends State<RaccingPage> {
               padding: const EdgeInsets.all(5),
               itemCount:_controllLenth,
               itemBuilder: (BuildContext context, int index){
+                var te = index +1;
                 return Card(
                   child: ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Colors.blue,
-                      child: Text("$index"),
+                      child: Text("$te"),
                       foregroundColor: Colors.white,
                     ),
                     title: Text(_controllTitle[index]),

@@ -60,6 +60,9 @@ flutter:
     - assets/LogoLGEU.png
     - assets/pcital.jpg
     - assets/tic.png
+    - assets/control.gif
+    - assets/giflogo.gif
+    - assets/logoControl.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
