@@ -234,7 +234,23 @@ String MakeKML(String longitude, String latitude, String range)
 //---------------------------------------------------------
 void MakeOrbit()
 {
- 
+ String kmlOrbit = "";
+ for(int g =0; g<361; g ++)
+  {
+    kmlOrbit = "";
+    kmlOrbit = "flytoview=<LookAt><longitude>";
+    kmlOrbit += CoordOrbit[0];
+    kmlOrbit += "</longitude><latitude>";
+    kmlOrbit += CoordOrbit[1];
+    kmlOrbit += "</latitude><heading>";
+    kmlOrbit += String(g);
+    kmlOrbit += "</heading><range>";
+    kmlOrbit += CoordOrbit[2];
+    kmlOrbit += "</range><tilt>40</tilt></LookAt>";
+    Serial.println(kmlOrbit);
+    if (client.connect(host, port)){ client.print(kmlOrbit);}
+ }
+  client.stop();
 }
 //----------------------------------------------------------tourPin is responsable for send the kml's with the selected time by the user, creating the tourPin for 16 places
 void Tour(int Time)

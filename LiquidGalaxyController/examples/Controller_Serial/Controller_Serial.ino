@@ -240,7 +240,21 @@ String MakeKML(String longitude, String latitude, String range)
 //------------------------------------------------------------------Function to perform an orbit
 void MakeOrbit()
 {
-
+ String kmlOrbit = "";
+ for(int g =0; g<361; g ++)
+  {
+    kmlOrbit = "";
+    kmlOrbit = "flytoview=<LookAt><longitude>";
+    kmlOrbit += CoordOrbit[0];
+    kmlOrbit += "</longitude><latitude>";
+    kmlOrbit += CoordOrbit[1];
+    kmlOrbit += "</latitude><heading>";
+    kmlOrbit += String(g);
+    kmlOrbit += "</heading><range>";
+    kmlOrbit += CoordOrbit[2];
+    kmlOrbit += "</range><tilt>40</tilt></LookAt>";
+    Serial.println(kmlOrbit);
+ }
 }
 //-------------------------------------------------------This function is responsable for selecting the state of the joystick controller and select the correct command 
 void JoysticAnalyser(int State, char Position)
