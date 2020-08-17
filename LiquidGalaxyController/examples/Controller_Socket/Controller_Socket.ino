@@ -399,6 +399,7 @@ void JoysticAnalyser(int State, char Position)
 //----------------------------------------------------------Tour is responsable for send the kml's with the selected time by the user, creating the tour for 16 places
 void Tour(int Time)
 {
+  while(digitalRead(tourPin)){}
   int Tb,Ta;
   for(int tour = 0 ;tour<16;tour++)
   {

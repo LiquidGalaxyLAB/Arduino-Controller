@@ -27,3 +27,6 @@ For the complete construction of the controller, the following items will be nec
  * Android phone or Tablet
  
  You can check the complete list of materials here: https://docs.google.com/spreadsheets/d/1dB7ytINp_5vQwNA6uyauQipsMxrJ-Wr6oeAZAQ9JamU/edit?usp=sharing
+
+## __Instruction manual__
+ You can view the assembly and use manual here: https://docs.google.com/document/d/1tBn0hPdX7SJ-kYaByKNV1_GQNJUsSkxQtLVOuMz2EcE/edit?usp=sharing
