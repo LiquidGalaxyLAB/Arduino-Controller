@@ -12,8 +12,8 @@ https://github.com/LiquidGalaxyLAB/Arduino-Controller
 
 Otávio Jesus França Oliveira - GSoC 2020
 -------------------------------------------------------------
-Esse código esta direcionado ao uso da Luva Controladora, o sensor Acelerômetro deve ser montado sobre o eixo central da mão, 
-para permitir uma melhor leitura dos movimentos do usuário.
+This code is directed to the use of the Controller Glove, the Accelerometer sensor must be mounted on the central axis of the hand,
+to allow a better reading of the user's movements.
 With this code the controller will start in standby mode until the connection data to the WiFi network is entered
 -------------------------------------------------------------*/
 //-------------------------------------------------- Bluetooth comunication
@@ -92,7 +92,7 @@ void loop()
       {  
         caracter = SerialBT.read();
         if(caracter == '#') ReadPlace();
-        if(caracter == '&') ReadTimeTour();
+        if(caracter == '/') ReadNetInfo();
         if(caracter == '&') ReadTimeTour();
       }
     //-----------------------------------------------------------------------
