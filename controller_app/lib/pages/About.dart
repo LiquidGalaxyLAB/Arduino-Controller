@@ -1,3 +1,4 @@
+import 'package:controllerapp/widgets/collaboration.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,7 +32,7 @@ class Info extends StatelessWidget {
             Row(
               children: <Widget>[
                 Container(
-                  height: size.height*.05,
+                  height: size.height*.02,
                 ),
               ],
             ),
@@ -61,7 +62,7 @@ class Info extends StatelessWidget {
                 ),
               ),
             ),
-            Container(height:22),
+            Container(height:18),
             Center(
               child: Container(
                 width: size.width*.5,
@@ -88,7 +89,7 @@ class Info extends StatelessWidget {
                 ),
               ),
             ),
-            Container(height:22),
+            Container(height:18),
             Center(
               child: Container(
                 width: size.width*.5,
@@ -115,7 +116,7 @@ class Info extends StatelessWidget {
                 ),
               ),
             ),
-            Container(height:22),
+            Container(height:18),
             Center(
               child: Container(
                 width: size.width*.5,
@@ -129,7 +130,7 @@ class Info extends StatelessWidget {
                     },
                     child: Row(
                       children: <Widget>[
-                        Icon(Icons.people_outline,color: Colors.white,),
+                        Icon(Icons.home,color: Colors.white,),
                         SizedBox(width: 20),
                         Text("Community", style: TextStyle(
                             color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),
@@ -137,6 +138,32 @@ class Info extends StatelessWidget {
                       ],
                     ),
                     color: Colors.blue,
+                    elevation: 10,
+                  ),
+                ),
+              ),
+            ),
+            Container(height:18),
+            Center(
+              child: Container(
+                width: size.width*.5,
+                height: size.height*.05,
+                color: Colors.green,
+                child: SizedBox(
+                  child: RaisedButton(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Collaboration()));
+                    },
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.people,color: Colors.white,),
+                        SizedBox(width: 20),
+                        Text("Collaborators", style: TextStyle(
+                            color: Colors.white,fontSize: 15,fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                    color: Colors.orange,
                     elevation: 10,
                   ),
                 ),
