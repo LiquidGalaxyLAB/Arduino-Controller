@@ -1,3 +1,21 @@
+/*-------------------------------------------------------------
+ _ _             _     _               _                  
+| (_) __ _ _   _(_) __| |   __ _  __ _| | __ ___  ___   _ 
+| | |/ _` | | | | |/ _` |  / _` |/ _` | |/ _` \ \/ / | | |
+| | | (_| | |_| | | (_| | | (_| | (_| | | (_| |>  <| |_| |
+|_|_|\__, |\__,_|_|\__,_|  \__, |\__,_|_|\__,_/_/\_\\__, |
+        |_|                |___/                    |___/ 
+https://github.com/LiquidGalaxy/liquid-galaxy
+https://github.com/LiquidGalaxyLAB/liquid-galaxy
+
+https://github.com/LiquidGalaxyLAB/Arduino-Controller
+
+Otávio Jesus França Oliveira - GSoC 2020
+-------------------------------------------------------------
+This program should only be used when connected with the PC Master Liquid Galaxy, using WiFi communication, 
+this code allows the change of the connection data with the WiFi network through the application developed for this project. 
+With this code the controller will start in standby mode until the connection data to the WiFi network is entered
+-------------------------------------------------------------*/
 #include <WiFi.h> 
 #include <LiquidGalaxyController.h>
 #include <SoftwareSerial.h>
@@ -22,7 +40,7 @@ const uint16_t port = 8000; //add
 SoftwareSerial VR3(22,23);
 byte a[27];
 int rec =18;
-#define _pinOut 18
+int _pinOut = 18;
 int received;
 byte headVoice[4]={0xAA,0x02,0x31,0x0A};
 byte groups[4] [11]={
@@ -33,16 +51,16 @@ byte groups[4] [11]={
 //---------------------------------------------------------------------------------------------LiquidGalaxyController parameters
 const byte NumberRows = 4;
 const byte NumberColuns = 4;
-byte linha[NumberRows] ={13,12,14,27}; 
-byte coluna[NumberColuns]={26,25,33,32};
+byte line[NumberRows] ={13,12,14,27}; 
+byte column[NumberColuns]={26,25,33,32};
 int Keys[NumberRows*NumberColuns] = 
   {1, 2, 3, 4,
    5, 6, 7, 8,
    9,10,11,12,
   13,14,15,16};
-LG_Keypad LGKey(Keys,linha,coluna,NumberRows,NumberColuns);
-int JoysticRanges[] = {3200,10,3200,100};        // You can check these values just by reading the analog inputs corresponding to the joystic 
-LG_JoysticSetup joystic(A6,A7,4,JoysticRanges);  //B,F,R,P and define the value that you consider best
+LG_Keypad LGKey(Keys,line,column,NumberRows,NumberColuns);
+int JoysticRanges[] = {3200,10,3200,100};        // You can check these values just by reading the analog inputs corresponding to the joystic B,F,R,P and define the value that you consider best
+LG_JoysticSetup joystic(A6,A7,4,JoysticRanges);  
 LG_UltrasonicSetup Ultrasonic(21,19);
 //--------------------------------------------------------------------------------------------------------------------Default commands and starting places
 String Commands[]={"zero","linear","zOut","zIn","right","left","up","down","rightUp","rightDown","leftUp","leftDown",
@@ -58,8 +76,8 @@ String CoordOrbit[3];
 //--------------------------------------------------------------------------------------------------------------------Control variables
 int moviment, moviment2,moviment3 =0;
 int movJoy =1;
-int tourPin = 2;//15;
-int OrbitPin = 15;//2;
+int tourPin = 15;
+int OrbitPin = 2;
 int changeVoiceGroup = 5;
 int TimeTour = 10;
 int cicleTimeInit, cicleTimeEnd;
@@ -67,14 +85,10 @@ bool startControl = true;
 //--------------------------------------------------------------------------------------------------------------------Default commands and starting places
 void setup() 
 {
- 
   Serial.begin(9600);
-  //----------------------------------
-
   SerialBT.begin("LG Controller"); //Bluetooth device name
-  
   VR3.begin(9600);
- // pinMode(OrbitPin, INPUT);
+  pinMode(OrbitPin, INPUT);
   pinMode(tourPin, INPUT);
   pinMode(changeVoiceGroup, INPUT);
   pinMode(_pinOut,OUTPUT); 
@@ -90,7 +104,7 @@ void setup()
   delay(1); 
  }
  Serial.println("");
-delay(100);
+ delay(100);
       VR3.write(0xaa);
       VR3.write(0x0D);
       VR3.write(0x0a);
@@ -108,8 +122,8 @@ void loop()
         if(caracter == '&') ReadTimeTour();
       }
    //----------------------------------------------------------------------
-    if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} MakeOrbit();}
-    //if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(TimeTour);} // Start and stop the tour
+    if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} MakeOrbit();} // Start the Orbit
+    if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(TimeTour);} // Start and stop the tour
    //------------------------------------------------------------------------------------------------------------------------------------------
     if(digitalRead(changeVoiceGroup))
     { while(digitalRead(changeVoiceGroup) == HIGH){}  // Change the voice group after press the button
@@ -292,35 +306,40 @@ String MakeKML(String longitude, String latitude, String range)
 //------------------------------------------------------------------
 void MakeOrbit()
 {
-  for(int j =0 ;j<40;j++)
+ /* for(int u =0;u<360;u++){
+  delay(100);
+   LGMove(16);
+   delay(100);
+    LGMove(0);}
+  String kmlOrbit = "";*/
+ /*for(int g =0; g<361; g += 90)
   {
-    JoysticAnalyser(3, 'B');
-  }
-  LGMove(0);
-  for(int j =0 ;j<360;j++)
-  {
-    JoysticAnalyser(3, 'R');
-  }
-  LGMove(0);
-  /*String kmlOrbit = "";
-  String kml ="flytoview=<LookAt><longitude>";
-  kml += CoordOrbit[0];
-  kml += "</longitude><latitude>";
-  kml +=CoordOrbit[1] ;
-  kml += "</latitude><range>";
-  kml += CoordOrbit[2];
-  kml += "</range><heading>";
-
- //for(int g =0; g<180; g+=5)
- // {
-    kmlOrbit = kml;
-    kmlOrbit += "40";// String(g);
+    kmlOrbit = "";
+    kmlOrbit = "flytoview=<LookAt><longitude>";
+    kmlOrbit += CoordOrbit[0];
+    kmlOrbit += "</longitude><latitude>";
+    kmlOrbit += CoordOrbit[1];
+    kmlOrbit += "</latitude><range>";
+    kmlOrbit += CoordOrbit[2];
+    kmlOrbit += "</range><heading>";
+    kmlOrbit += String(g);
     kmlOrbit += "</heading></LookAt>";
-
     if (client.connect(host, port)){ client.print(kmlOrbit);}
-    Serial.println(kmlOrbit);
- // }
-  client.stop();*/
+    delay(4000);
+}*/
+
+   if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.4017881321627</longitude><latitude>37.79152911640639</latitude><altitude>0</altitude><heading>167.0211046386626</heading><range>73613697</tilt></range></LookAt>");}
+/*    delay(3000);
+    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>90</heading></LookAt>");}
+    delay(3000);
+    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>180</heading></LookAt>");}
+    delay(3000);
+    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>270</heading></LookAt>");}
+    delay(3000);
+    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>360</heading></LookAt>");}
+    Serial.println("<LookAt><gx:TimeStamp><when>1994</when></gx:TimeStamp><longitude>-122.485046</longitude><latitude>37.81</latitude><altitude>2000</altitude><range>500</range><tilt>45</tilt><heading>0</heading><altitudeMode>relativeToGround</altitudeMode></LookAt>");
+ */
+  client.stop();
 }
 //-------------------------------------------------------This function is responsable for selecting the state of the joystick controller and select the correct command 
 void JoysticAnalyser(int State, char Position)
