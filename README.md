@@ -1,4 +1,3 @@
-![Logo](./docs/AppIcon.png)
 # Arduino Controller for Liquid Galaxy
 
 __Welcome, know a little more about the project__
