@@ -412,7 +412,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
   // Method to send message,
   // for turning the Bluetooth device on
   void _sendNetInfo() async {
-    connection.output.add(utf8.encode("/"+netIP+","+netSSID+","+netPASSWORD+"," + "\r\n"));
+    connection.output.add(utf8.encode("/"+netIP+","+netSSID+","+netPASSWORD+","));
     await connection.output.allSent;
     setState(() {
       controlBottonSend = '';
@@ -423,7 +423,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
   // Method to send message,
   // for turning the Bluetooth device off
   void _sendPlaceString() async {
-    connection.output.add(utf8.encode("#"+StringToSend+"\r\n"));
+    connection.output.add(utf8.encode("#"+StringToSend));
     await connection.output.allSent;
     setState(() {
       controlBottonSend = '';
@@ -431,7 +431,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
     });
   }
   void _sendTime() async {
-    connection.output.add(utf8.encode("&"+time+","+"\r\n"));
+    connection.output.add(utf8.encode("&"+time+","));
     await connection.output.allSent;
     setState(() {
       controlBottonSend = '';
@@ -439,7 +439,7 @@ class _BluetoothAppState extends State<BluetoothApp> {
     });
   }
   void _sendNewList() async {
-    connection.output.add(utf8.encode("#"+NewStringToSend+"\r\n"));
+    connection.output.add(utf8.encode("#"+NewStringToSend));
     await connection.output.allSent;
     setState(() {
       controlBottonSend = '';
