@@ -30,3 +30,5 @@ For the complete construction of the controller, the following items will be nec
 
 ## __Instruction manual__
  You can view the assembly and use manual here: https://docs.google.com/document/d/1tBn0hPdX7SJ-kYaByKNV1_GQNJUsSkxQtLVOuMz2EcE/edit?usp=sharing
+## __Demo application__
+ You can find the trial version of the android application at this link, download the latest version available: https://drive.google.com/drive/folders/1u1J5NucohOnSaBBS4evdA-7k67bPitr_?usp=sharing
