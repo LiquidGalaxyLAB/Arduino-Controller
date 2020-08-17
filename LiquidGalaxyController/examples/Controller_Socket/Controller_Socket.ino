@@ -306,39 +306,22 @@ String MakeKML(String longitude, String latitude, String range)
 //------------------------------------------------------------------
 void MakeOrbit()
 {
- /* for(int u =0;u<360;u++){
-  delay(100);
-   LGMove(16);
-   delay(100);
-    LGMove(0);}
-  String kmlOrbit = "";*/
- /*for(int g =0; g<361; g += 90)
+ String kmlOrbit = "";
+ for(int g =0; g<361; g ++)
   {
     kmlOrbit = "";
     kmlOrbit = "flytoview=<LookAt><longitude>";
     kmlOrbit += CoordOrbit[0];
     kmlOrbit += "</longitude><latitude>";
     kmlOrbit += CoordOrbit[1];
-    kmlOrbit += "</latitude><range>";
-    kmlOrbit += CoordOrbit[2];
-    kmlOrbit += "</range><heading>";
+    kmlOrbit += "</latitude><heading>";
     kmlOrbit += String(g);
-    kmlOrbit += "</heading></LookAt>";
+    kmlOrbit += "</heading><range>";
+    kmlOrbit += CoordOrbit[2];
+    kmlOrbit += "</range><tilt>40</tilt></LookAt>";
+    Serial.println(kmlOrbit);
     if (client.connect(host, port)){ client.print(kmlOrbit);}
-    delay(4000);
-}*/
-
-   if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.4017881321627</longitude><latitude>37.79152911640639</latitude><altitude>0</altitude><heading>167.0211046386626</heading><range>73613697</tilt></range></LookAt>");}
-/*    delay(3000);
-    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>90</heading></LookAt>");}
-    delay(3000);
-    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>180</heading></LookAt>");}
-    delay(3000);
-    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>270</heading></LookAt>");}
-    delay(3000);
-    if (client.connect(host, port)){ client.print("flytoview=<LookAt><longitude>-122.485046</longitude><latitude>37.820047</latitude><range>3000</range><heading>360</heading></LookAt>");}
-    Serial.println("<LookAt><gx:TimeStamp><when>1994</when></gx:TimeStamp><longitude>-122.485046</longitude><latitude>37.81</latitude><altitude>2000</altitude><range>500</range><tilt>45</tilt><heading>0</heading><altitudeMode>relativeToGround</altitudeMode></LookAt>");
- */
+ }
   client.stop();
 }
 //-------------------------------------------------------This function is responsable for selecting the state of the joystick controller and select the correct command 
