@@ -12,8 +12,8 @@ https://github.com/LiquidGalaxyLAB/Arduino-Controller
 
 Otávio Jesus França Oliveira - GSoC 2020
 -------------------------------------------------------------
-This program should only be used when connected with the PC Master Liquid Galaxy, using WiFi communication, 
-this code allows the change of the connection data with the WiFi network through the application developed for this project. 
+This program should only be used when connected with the PC Master Liquid Galaxy, using WiFi communication 
+This code allows the change of the connection data with the WiFi network through the application developed for this project. 
 With this code the controller will start in standby mode until the connection data to the WiFi network is entered
 -------------------------------------------------------------*/
 #include <WiFi.h> 
