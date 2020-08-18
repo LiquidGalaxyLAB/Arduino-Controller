@@ -157,7 +157,7 @@ class _ExampleslistState extends State<Exampleslist> {
                                   color: Colors.blue,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60)),
                                     child: Center(
-                                      child: Text("Hello! \n Select a option", textAlign: TextAlign.center,style: TextStyle(
+                                      child: Text("Hello! \n Select an option", textAlign: TextAlign.center,style: TextStyle(
                                           color: Colors.black87,fontSize: 28,fontWeight: FontWeight.w700),
                                       ),
                                     )

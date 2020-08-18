@@ -142,6 +142,7 @@ class _NetInfoPageState extends State<NetInfoPage> {
                                         color: Colors.blue,
                                         onPressed: (){
                                           if(_formInfoKey.currentState.validate()){
+                                            FocusScope.of(context).requestFocus(new FocusNode());
                                             netIP = _LGIP.text;
                                             netSSID = _SSID.text;
                                             netPASSWORD = _PASSWORD.text;

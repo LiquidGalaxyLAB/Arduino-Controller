@@ -87,6 +87,7 @@ class _TourTimeState extends State<TourTime> {
                                         color: Colors.blue,
                                         onPressed: (){
                                           if(_formInfoKey.currentState.validate()){
+                                            FocusScope.of(context).requestFocus(new FocusNode());
                                             time= _TIME.text;
                                             setState(() {
                                               controlBottonSend = 'Time';

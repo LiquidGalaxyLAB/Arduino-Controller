@@ -37,7 +37,7 @@ class _MyPlacesState extends State<MyPlaces> {
               height: 40,
               color: Colors.white,
               child: Center(
-                  child: Text("Insert the places you want to navigate",textAlign: TextAlign.center,
+                  child: Text("Add a new navigation list",textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.blue,fontSize: 20,fontWeight: FontWeight.w700,),
                   )),
             ),
