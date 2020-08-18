@@ -240,6 +240,7 @@ String MakeKML(String longitude, String latitude, String range)
 //------------------------------------------------------------------Function to perform an orbit
 void MakeOrbit()
 {
+  digitalWrite(_pinOut,HIGH);
  String kmlOrbit = "";
  for(int g =0; g<361; g ++)
   {
@@ -255,6 +256,7 @@ void MakeOrbit()
     kmlOrbit += "</range><tilt>40</tilt></LookAt>";
     Serial.println(kmlOrbit);
  }
+ digitalWrite(_pinOut,LOW);
 }
 //-------------------------------------------------------This function is responsable for selecting the state of the joystick controller and select the correct command 
 void JoysticAnalyser(int State, char Position)
@@ -314,6 +316,7 @@ void JoysticAnalyser(int State, char Position)
 //----------------------------------------------------------Tour is responsable for send the kml's with the selected time by the user, creating the tour for 16 places
 void Tour(int Time)
 {
+  digitalWrite(_pinOut,HIGH);
   while(digitalRead(tourPin)){}
   int Tb,Ta;
   for(int tour = 0 ;tour<16;tour++)
@@ -327,6 +330,7 @@ void Tour(int Time)
       Tb = millis();
     }
   }
+  digitalWrite(_pinOut,LOW);
 }
 //-----------------------------------------------GetRec receive the comands sent by the voice module and return the a[5], position corresponding to voice index
 int GetRec()
