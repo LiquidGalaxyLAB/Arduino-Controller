@@ -30,4 +30,5 @@ For the case of making the connection between the controller and the PC Master L
 $sudo iptables -F
 $sudo iptables -A INPUT -i eth0 -j ACCEPT
 $sudo iptables -A INPUT -i lo -j ACCEPT
+ssudo iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
 $sudo iptables -A INPUT -p tcp --syn -j DROP
