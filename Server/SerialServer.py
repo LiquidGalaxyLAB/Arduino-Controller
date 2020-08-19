@@ -1,17 +1,26 @@
 #!/usr/bin/python
 import serial
 import keyboard
+import serial.tools.list_ports
 
 from pynput.keyboard import Key, Controller as KeyboardController
 
 keyb = KeyboardController()
 
-comport = serial.Serial('/dev/ttyUSB0', 9600)
-#comport = serial.Serial('COM3', 9600)
+esp_ports = [
+    p.device
+    for p in serial.tools.list_ports.comports()
+    if 'CP2102' in p.description
+]
+
+if not esp_ports:
+    raise IOError("No ESP found")
+if len(esp_ports) == 1:
+    comport = serial.Serial('/dev/ttyUSB0', 9600)
+    #comport = serial.Serial('COM3', 9600)
 
 def Position_Controller(dataRec):
     data = dataRec
-    print(data)
 
     if "linear" in data:
         keyb.press('r')
@@ -66,15 +75,12 @@ def Position_Controller(dataRec):
         f.write(data)
         f.close()
 
-  #  data = 0
 
 
 if __name__ == "__main__":
 
     while True:
         valor = comport.readline().decode() #'UTF-8')
-#        print(valor)
         Position_Controller(valor)
 
-# comport.close()
 
