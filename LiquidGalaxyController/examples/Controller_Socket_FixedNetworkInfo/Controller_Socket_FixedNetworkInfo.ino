@@ -272,25 +272,26 @@ String MakeKML(String longitude, String latitude, String range)
 //------------------------------------------------------------------
 void MakeOrbit()
 {
+  bool Step = true;
   digitalWrite(_pinOut,HIGH);
- String kmlOrbit = "";
- for(int g =0; g<361; g ++)
-  {
-    kmlOrbit = "";
-    kmlOrbit = "flytoview=<LookAt><longitude>";
-    kmlOrbit += CoordOrbit[0];
-    kmlOrbit += "</longitude><latitude>";
-    kmlOrbit += CoordOrbit[1];
-    kmlOrbit += "</latitude><heading>";
-    kmlOrbit += String(g);
-    kmlOrbit += "</heading><range>";
-    kmlOrbit += CoordOrbit[2];
-    kmlOrbit += "</range><tilt>40</tilt></LookAt>";
-    Serial.println(kmlOrbit);
-    if (client.connect(host, port)){ client.print(kmlOrbit);}
- }
-  client.stop();
-  digitalWrite(_pinOut,LOW);
+  String kmlOrbit = "";
+   for(int g =0; g<361; g ++)
+    {
+      kmlOrbit = "";
+      kmlOrbit = "flytoview=<LookAt><longitude>";
+      kmlOrbit += CoordOrbit[0];
+      kmlOrbit += "</longitude><latitude>";
+      kmlOrbit += CoordOrbit[1];
+      kmlOrbit += "</latitude><heading>";
+      kmlOrbit += String(g);
+      kmlOrbit += "</heading><range>";
+      kmlOrbit += CoordOrbit[2];
+      kmlOrbit += "</range><tilt>40</tilt></LookAt>";
+      Serial.println(kmlOrbit);
+      if(Step){Step = false; delay(8000);}
+      if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} break;}
+   }
+    digitalWrite(_pinOut,LOW);
 }
 //-------------------------------------------------------This function is responsable for selecting the state of the joystick controller and select the correct command 
 void JoysticAnalyser(int State, char Position)
