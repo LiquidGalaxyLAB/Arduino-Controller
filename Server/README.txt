@@ -1,7 +1,7 @@
 
 Before running the server script, it is necessary to update the pip: 
 
-$sudo python -m pip install — upgrade pip 
+$sudo python -m pip install --upgrade pip 
 
 And install these dependencies below:
 
