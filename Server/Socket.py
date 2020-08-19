@@ -10,7 +10,6 @@ s.listen(2)
 
 def Position_Controller(dataRec):
     data = dataRec
-    print(data)
 
     if "linear" in data:
         keyb.press('r')
