@@ -66,7 +66,7 @@ def Position_Controller(dataRec):
 while True:
     client, addr = s.accept()
     while True:
-        content = client.recv(128).decode()
+        content = client.recv(256).decode()
         if len(content) == 0:
             break
         else:
