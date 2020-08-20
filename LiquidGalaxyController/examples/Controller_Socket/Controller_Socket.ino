@@ -321,7 +321,12 @@ void MakeOrbit()
       kmlOrbit += "</heading><range>";
       kmlOrbit += CoordOrbit[2];
       kmlOrbit += "</range><tilt>40</tilt></LookAt>";
-      Serial.println(kmlOrbit);
+      
+      if (client.connect(host, port)) 
+          {
+            client.print(kmlOrbit);
+            Serial.println(kmlOrbit);
+          }client.stop();
       if(Step){Step = false; delay(8000);}
       if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} break;}
    }
@@ -334,10 +339,10 @@ void JoysticAnalyser(int State, char Position)
   {switch (Position)
     {
       case 'F':
-      LGMove(6);
+      LGMove(7);
       break;
       case 'B':
-      LGMove(7);
+      LGMove(6);
       break;
       case 'R':
       LGMove(4);
@@ -351,10 +356,10 @@ void JoysticAnalyser(int State, char Position)
   {switch (Position)
     {
       case 'F':
-      LGMove(12);
+      LGMove(13);
       break;
       case 'B':
-      LGMove(13);
+      LGMove(12);
       break;
       case 'R':
       LGMove(14);
@@ -368,10 +373,10 @@ void JoysticAnalyser(int State, char Position)
   {switch (Position)
     {
       case 'F':
-      LGMove(18);
+      LGMove(19);
       break;
       case 'B':
-      LGMove(19);
+      LGMove(18);
       break;
       case 'R':
       LGMove(16);

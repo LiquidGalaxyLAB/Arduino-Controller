@@ -268,10 +268,10 @@ void JoysticAnalyser(int State, char Position)
   {switch (Position)
     {
       case 'F':
-      LGMove(6);
+      LGMove(7);
       break;
       case 'B':
-      LGMove(7);
+      LGMove(6);
       break;
       case 'R':
       LGMove(4);
@@ -285,10 +285,10 @@ void JoysticAnalyser(int State, char Position)
   {switch (Position)
     {
       case 'F':
-      LGMove(12);
+      LGMove(13);
       break;
       case 'B':
-      LGMove(13);
+      LGMove(12);
       break;
       case 'R':
       LGMove(14);
@@ -302,10 +302,10 @@ void JoysticAnalyser(int State, char Position)
   {switch (Position)
     {
       case 'F':
-      LGMove(18);
+      LGMove(19);
       break;
       case 'B':
-      LGMove(19);
+      LGMove(18);
       break;
       case 'R':
       LGMove(16);
