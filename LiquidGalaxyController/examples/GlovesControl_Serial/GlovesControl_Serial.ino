@@ -46,9 +46,11 @@ String CoordOrbit[3];
 //-------------------------------------------Control variables
 int x,y,z;
 int control = 1;
-int button = 27;
-//int movJoy =1;
-int tourPin = 26;
+int controlNav = 0;
+int placeAdd = 16;
+int placeSub = 4;
+int changeControl = 15;
+int tourPin = 27;
 int OrbitPin = 2;
 int TimeTour = 10;
 int r = 14;
@@ -66,7 +68,7 @@ void setup()
   SerialBT.begin("Glove Controller"); //Bluetooth device name
        
   adxl.powerOn();
-  pinMode(button, INPUT);
+  pinMode(changeControl, INPUT);
   pinMode(tourPin, INPUT);
   pinMode(OrbitPin, INPUT);
   pinMode(r, OUTPUT);digitalWrite(r,LOW);
@@ -87,39 +89,54 @@ void loop()
     //-----------------------------------------------------------------------
       if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} MakeOrbit();} // Start the Orbit
       if(digitalRead(tourPin)){while(digitalRead(tourPin)){} Tour(TimeTour);} // Start and stop the tour
+   //----------------------------------------------------------------------------Function to make navigation by 16 places
+     if(digitalRead(placeAdd))
+     {
+      while(digitalRead(placeAdd)){} 
+      controlNav ++;
+      if(controlNav == 16)controlNav =0;
+      Serial.println(MakeKML(Coordnates[controlNav][0],Coordnates[controlNav][1],Coordnates[controlNav][2]));
+     }
+      if(digitalRead(placeSub))
+     {
+      while(digitalRead(placeSub)){} 
+      controlNav --;
+      if(controlNav == -1)controlNav =15;
+      Serial.println(MakeKML(Coordnates[controlNav][0],Coordnates[controlNav][1],Coordnates[controlNav][2]));
+     }
    //----------------------------------------------------------------------------Function to Read gloves moviment  
     adxl.readXYZ(&x, &y, &z); //read the accelerometer values and store them in variables  x,y,z
-    if (digitalRead(button)) 
+    if (digitalRead(changeControl)) 
     { //Serial.println("erro");
       control ++;
-      while (digitalRead(button)){}
+      while (digitalRead(changeControl)){}
       if(control == 4)control =1;
       RGB(control);
     }
     switch (control)
      {
       case 1:
-      if(x < -150){LGMove(7);tagx =1;}
-      else if(x > 240) {LGMove(6);tagx =1;}
+      if(x < -150){LGMove(4);tagx =1;}
+      else if(x > 240) {LGMove(5);tagx =1;}
           else if(tagx == 1) {LGMove(0); tagx = 0;}
-      if(y < -245){LGMove(5);tag =1;}
-      else if(y > 245){LGMove(4);tag =1;}
+      if(y < -245){LGMove(6);tag =1;}
+      else if(y > 245){LGMove(7);tag =1;}
           else if(tag == 1) {LGMove(0); tag = 0;}
       break;
       case 2:
-      if(x < -150){LGMove(2);tagx2 = 1;}
-      else if(x > 240) {LGMove(3);tagx2 = 1;}
+      if(x < -150){LGMove(13);tagx2 = 1;}
+      else if(x > 240) {LGMove(12);tagx2 = 1;}
           else if(tagx2 == 1) {LGMove(0); tagx2 = 0;}
-      if(y < -245){LGMove(13);tag2 = 1;}
-      else if(y > 245){LGMove(12);tag2 = 1;}
+      if(y < -245){LGMove(2);tag2 = 1;}
+      else if(y > 245){LGMove(3);tag2 = 1;}
           else if(tag2 == 1) {LGMove(0); tag2 = 0;}
       break;
       case 3:
-      if(x < -150){LGMove(19);tagx3 = 1;}
-      else if(x > 240) {LGMove(18);tagx3 = 1;}
+      if(x < -150){LGMove(17);tagx3 = 1;}
+      else if(x > 240) {LGMove(16);tagx3 = 1;}
       else if(tagx3 == 1) {LGMove(0); tagx3 = 0;}
-      if(y < -245){LGMove(17);tag3 = 1;}
-      else if(y > 245){LGMove(16);tag3 = 1;}
+      if(y < -245){LGMove(19);tag3 = 1;}
+      else if(y > 245){LGMove(18);tag3 = 1;}
           else if(tag3 == 1) {LGMove(0); tag3 = 0;}
       break;
       default:
@@ -209,7 +226,7 @@ String MakeKML(String longitude, String latitude, String range)
 void MakeOrbit()
 {
   bool Step = true;
-  digitalWrite(_pinOut,HIGH);
+  digitalWrite(r,HIGH);
   String kmlOrbit = "";
    for(int g =0; g<361; g ++)
     {
@@ -227,7 +244,7 @@ void MakeOrbit()
       if(Step){Step = false; delay(8000);}
       if(digitalRead(OrbitPin)){while(digitalRead(OrbitPin)){} break;}
    }
-    digitalWrite(_pinOut,LOW);
+    digitalWrite(r,LOW);
 }
 //----------------------------------------------------------tourPin is responsable for send the kml's with the selected time by the user, creating the tourPin for 16 places
 void Tour(int Time)

@@ -29,6 +29,6 @@ void loop(){
 	int x,y,z;  
 	adxl.readXYZ(&x, &y, &z); //read the accelerometer values and store them in variables  x,y,z
 	
-	Serial.println(x);
-	//Serial.println(y);
+	//Serial.println(x);
+	Serial.println(y);
 }
