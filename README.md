@@ -21,6 +21,7 @@ The other control is based on a controller glove, this glove has an acceleromete
 * Change the tour time during the tour;
 * Start the connection to the WiFi network between the controls and the Liquid Galaxy and update the network data, if necessary;
 * Learn a little more about GSoC, the Liquid Galaxy community and the whole project and its collaborators on the information page.
+
 ![Logo](./Docs/app.gif)
 
  ## __Google Summer Of Code 2020__
