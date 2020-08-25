@@ -76,8 +76,8 @@ String CoordOrbit[3];
 //--------------------------------------------------------------------------------------------------------------------Control variables
 int moviment, moviment2,moviment3 =0;
 int movJoy =1;
-int tourPin = 15;
-int OrbitPin = 2;
+int tourPin = 2;
+int OrbitPin = 15;
 int changeVoiceGroup = 5;
 int TimeTour = 10;
 int cicleTimeInit, cicleTimeEnd;
