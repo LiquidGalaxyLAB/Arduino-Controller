@@ -1,4 +1,4 @@
-![Logo](./Docs/AppIconv2.png)
+![Logo](./Docs/AppIconv2.png) ![Logo](./Docs/logoGif.gif)
 
 # Arduino Controller for Liquid Galaxy
 
