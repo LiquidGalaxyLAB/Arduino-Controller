@@ -26,6 +26,7 @@ The other control is based on a controller glove, this glove has an acceleromete
 
  ## __Google Summer Of Code 2020__
  This project was developed within the Google Summer of Code 2020 program. In direct collaboration with the [Liquid Galaxy project](https://www.liquidgalaxy.eu/)
+ 
  ![Logo](./Docs/gsoc2020.PNG) ![Logo](./Docs/liquidg.PNG)
  
  ### Main technologies and languages used
