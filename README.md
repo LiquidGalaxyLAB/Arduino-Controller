@@ -48,3 +48,7 @@ It will also be necessary to run a python script on the main machine, the steps 
 ## Complete documentation
 You can find the complete documentation for this project by clicking [here.](https://docs.google.com/document/d/1tBn0hPdX7SJ-kYaByKNV1_GQNJUsSkxQtLVOuMz2EcE/edit?usp=sharing)
 
+## License
+This software is under the [MIT](https://choosealicense.com/licenses/mit/)
+
+Copyright 2020 [Otávio Jeus França Oliveira](https://www.linkedin.com/in/otaviojfoliveira/)
