@@ -2,6 +2,8 @@
 
 # Arduino Controller for Liquid Galaxy
 
+[![github-languages-image](https://img.shields.io/github/languages/top/LiquidGalaxyLAB/Arduino-Controller.svg?color=green)]() [![github-language-count-image](https://img.shields.io/github/languages/count/LiquidGalaxyLAB/Arduino-Controller.svg)]()  [![github-repo-size-image](https://img.shields.io/github/repo-size/LiquidGalaxyLAB/Arduino-Controller.svg?color=yellow)]()
+
 ### __Welcome, know a little more about the project__
 
 This project was developed to act as a remote controller for Liquid Galaxy. With this controller the user will be able to interact with Liquid Galaxy in a more dynamic way, using a remote control that can be connected to Liquid Galaxy using a USB cable or just connecting to the same internet network via WiFi.
