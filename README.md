@@ -2,7 +2,7 @@
 
 # Arduino Controller for Liquid Galaxy
 
-[![github-languages-image](https://img.shields.io/github/languages/top/LiquidGalaxyLAB/Arduino-Controller.svg?color=green)]() [![github-language-count-image](https://img.shields.io/github/languages/count/LiquidGalaxyLAB/Arduino-Controller.svg)]()  [![github-repo-size-image](https://img.shields.io/github/repo-size/LiquidGalaxyLAB/Arduino-Controller.svg?color=yellow)]()
+[![License](https://img.shields.io/github/license/LiquidGalaxyLAB/Arduino-Controller.svg?color=red)](https://opensource.org/licensesMIT) [![github-languages-image](https://img.shields.io/github/languages/top/LiquidGalaxyLAB/Arduino-Controller.svg?color=green)]() [![github-language-count-image](https://img.shields.io/github/languages/count/LiquidGalaxyLAB/Arduino-Controller.svg)]()  [![github-repo-size-image](https://img.shields.io/github/repo-size/LiquidGalaxyLAB/Arduino-Controller.svg?color=yellow)]()
 
 ### __Welcome, know a little more about the project__
 
