@@ -2,6 +2,8 @@
 
 # Arduino Controller for Liquid Galaxy
 
+[![License](https://img.shields.io/github/license/LiquidGalaxyLAB/Arduino-Controller.svg?color=red)](https://opensource.org/licensesMIT) [![github-languages-image](https://img.shields.io/github/languages/top/LiquidGalaxyLAB/Arduino-Controller.svg?color=green)]() [![github-language-count-image](https://img.shields.io/github/languages/count/LiquidGalaxyLAB/Arduino-Controller.svg)]()  [![github-repo-size-image](https://img.shields.io/github/repo-size/LiquidGalaxyLAB/Arduino-Controller.svg?color=yellow)]()
+
 ### __Welcome, know a little more about the project__
 
 This project was developed to act as a remote controller for Liquid Galaxy. With this controller the user will be able to interact with Liquid Galaxy in a more dynamic way, using a remote control that can be connected to Liquid Galaxy using a USB cable or just connecting to the same internet network via WiFi.
@@ -46,3 +48,7 @@ It will also be necessary to run a python script on the main machine, the steps 
 ## Complete documentation
 You can find the complete documentation for this project by clicking [here.](https://docs.google.com/document/d/1tBn0hPdX7SJ-kYaByKNV1_GQNJUsSkxQtLVOuMz2EcE/edit?usp=sharing)
 
+## License
+This software is under the [MIT](https://choosealicense.com/licenses/mit/)
+
+Copyright 2020 [Otávio Jeus França Oliveira](https://www.linkedin.com/in/otaviojfoliveira/)
