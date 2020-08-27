@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      //home: MyHomePage(),
       home: SplashScreen(),
       routes: routes,
     );
@@ -154,7 +153,7 @@ class CustomDrawer extends StatelessWidget {
           Container(
               width: double.infinity,
               height: 200,
-              color: Colors.blue, //blue.withAlpha(180),
+              color: Colors.blue, 
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
