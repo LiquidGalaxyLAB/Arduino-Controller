@@ -38,6 +38,8 @@ The other control is based on a controller glove, this glove has an acceleromete
 * C ++
 * Darth
 * Python
+## How to install Liquid Galaxy on Virtual Machines?
+You can follow the steps for installing Liquid Galaxy on virtual machines using the [manual](https://docs.google.com/document/d/1J30SqLWFFYnRM_TwNvgo-R86i58P2PMzVuVTDSnMQcc/edit?usp=sharing) or following the [video](https://www.youtube.com/watch?v=8R__KnPPErQ&t=23s) with instructions
 
 ## How to install and use?
 To reproduce this project you will need a little knowledge of basic electronics and a list of specific components for assembling the controllers.
