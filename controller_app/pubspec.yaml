@@ -52,18 +52,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/lg_logo.png
-    - assets/mascot.png
-    - assets/facens.png
-    - assets/gsoc.png
-    - assets/intech3d.JPG
-    - assets/lgLab.png
-    - assets/LogoLGEU.png
-    - assets/pcital.jpg
-    - assets/tic.png
-    - assets/control.gif
-    - assets/giflogo.gif
-    - assets/logoControl.png
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
